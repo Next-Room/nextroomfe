@@ -4,7 +4,6 @@ import React, { forwardRef, useEffect, useRef, useState } from "react";
 import "../style/reset.css";
 import "./style.css";
 import { styled } from "styled-components";
-
 import useClickOutside from "@/hooks/useClickOutside";
 
 interface SupportingTextProps {
@@ -19,6 +18,7 @@ export interface TextFieldProps {
   helperText: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Props = Record<string, any>;
 
 const Label = styled.label<SupportingTextProps>`

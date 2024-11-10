@@ -1,11 +1,10 @@
 import React from "react";
-import Link from "next/link";
-
 import { SIGN_UP } from "@/consts/components/signUp";
-
+import Link from "next/link";
 import { NewTextField } from "./NewTextField.component";
 import * as S from "./SignUpView.styled";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Props = Record<string, any>;
 
 function SignUpView(props: Props) {

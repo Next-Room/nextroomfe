@@ -1,6 +1,5 @@
 import { Grid } from "@mui/material";
 import { FieldError } from "react-hook-form";
-
 import * as S from "./MakeThemePageView.styled";
 
 interface Modal {
@@ -18,9 +17,13 @@ type Props = {
   handleClose: () => void;
   formValue: FormValues;
   modalState: Modal;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formProps: Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   timeLimitProps: Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   themeNameProps: Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   hintLimitProps: Record<string, any>;
   titleError: FieldError | undefined;
   timeLimitError: FieldError | undefined;

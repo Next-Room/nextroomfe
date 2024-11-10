@@ -2,13 +2,14 @@ import React, { forwardRef } from "react";
 import Image from "next/image";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useRouter } from "next/navigation";
-
 import useCheckSignIn from "@/hooks/useCheckSignIn";
 import { setCookie } from "@/utils/cookie";
-import "@/apis/firebase";
-import useAnalytics from "@/hooks/useAnalytics";
 
+import { useRouter } from "next/navigation";
+
+import "@/apis/firebase";
+
+import useAnalytics from "@/hooks/useAnalytics";
 import * as S from "./Component.styled";
 
 type Props = Record<string, any>;

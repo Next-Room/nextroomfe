@@ -4,7 +4,6 @@ import { useInView } from "react-intersection-observer";
 import "@/apis/firebase";
 
 import useAnalytics from "@/hooks/useAnalytics";
-
 import * as S from "./Component.styled";
 
 export default function Component8() {
@@ -60,7 +59,7 @@ export default function Component8() {
       <S.Title8>보다 합리적으로 선택할 수 있는 요금제</S.Title8>
       <S.BoxWrapper8>
         {arr.map(({ name, count, exCost, nowCost }) => (
-          <S.Box8 key={name}>
+          <S.Box8>
             <S.BoxTitle>{name}</S.BoxTitle>
             <S.BoxDescription>
               {count}개의 테마를 <br />

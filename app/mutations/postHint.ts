@@ -1,10 +1,10 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosResponse } from "axios";
-
 import { useSnackBarWrite } from "@/components/atoms/snackBar.atom";
+
 import { apiClient } from "@/lib/reactQueryProvider";
 import { QUERY_KEY } from "@/queries/getHintList";
 import { MutationConfigOptions } from "@/types";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { AxiosResponse } from "axios";
 
 interface Request {
   themeId: number;

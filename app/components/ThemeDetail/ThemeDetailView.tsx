@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Stack, Grid, IconButton, Menu, MenuItem } from "@mui/material";
+import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
+import { useModalStateWrite } from "@/components/atoms/modalState.atom";
+import { useActiveHintStateValue } from "@/components/atoms/activeHint.atom";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useRouter } from "next/navigation";
-
-import { useActiveHintStateValue } from "@/components/atoms/activeHint.atom";
-import { useModalStateWrite } from "@/components/atoms/modalState.atom";
-import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
-
 import HintList from "../HintList/HintList";
 
 import * as S from "./ThemeDetail.styled";

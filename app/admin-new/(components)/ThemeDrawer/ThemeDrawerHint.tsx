@@ -1,29 +1,19 @@
-import Image from "next/image";
-import {
-  ChangeEvent,
-  Dispatch,
-  MouseEvent,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-
 import { useSelectedHint } from "@/components/atoms/selectedHint.atom";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { useToastWrite } from "@/components/atoms/toast.atom";
 import { useCreateHint } from "@/components/atoms/createHint.atom";
 import { getStatus } from "@/utils/localStorage";
 import { subscribeLinkURL } from "@/admin-new/(consts)/sidebar";
-
-import { GalleryImageProps } from "./consts/themeDrawerProps";
 import { compressImage, convertToPng } from "./helpers/imageHelpers";
+import { GalleryImageProps } from "./consts/themeDrawerProps";
 
 const ThemeDrawerHint = ({
   hintImages,
   setHintImages,
 }: {
   hintImages: File[];
-  setHintImages: Dispatch<SetStateAction<File[]>>;
+  setHintImages: React.Dispatch<React.SetStateAction<File[]>>;
 }) => {
   const status = getStatus();
 
@@ -41,7 +31,9 @@ const ThemeDrawerHint = ({
   }, [hintImages, selectedHint.hintImageUrlList]);
 
   // 이미지 파일 핸들러
-  const handleHintFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
+  const handleHintFileChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     if (imgCnt === 0) {
       setToast({
         isOpen: true,
@@ -77,7 +69,7 @@ const ThemeDrawerHint = ({
 
   const hintInputRef = useRef<HTMLInputElement>(null);
 
-  const handleHintClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleHintClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!status?.includes("SUBSCRIPTION")) {
       e.preventDefault();
       window.open(subscribeLinkURL, "_blank", "noopener,noreferrer");
@@ -86,7 +78,7 @@ const ThemeDrawerHint = ({
     hintInputRef.current?.click(); // 숨겨진 input 클릭 트리거
   };
 
-  const handleHintChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleHintChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     hintRef.current = e.target.value;
     setCreateHint((prev) => ({ ...prev, contents: hintRef.current }));
   };

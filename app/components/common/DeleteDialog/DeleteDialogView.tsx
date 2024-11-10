@@ -11,7 +11,7 @@ import React from "react";
 interface Props {
   open: boolean;
   handleDialogClose: () => void;
-  content: any;
+  content:any;
 }
 
 const CANCEL = "취소";
@@ -19,7 +19,7 @@ const DELETE = "삭제하기";
 
 function DeleteDialogView(props: Props) {
   const { open, handleDialogClose, content } = props;
-
+  
   return (
     <Dialog
       open={open}
@@ -28,11 +28,11 @@ function DeleteDialogView(props: Props) {
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle style={{ color: "white" }} id="alert-dialog-title">
-        {content.title}
+      {content.title}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          {content.description}
+        {content.description}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

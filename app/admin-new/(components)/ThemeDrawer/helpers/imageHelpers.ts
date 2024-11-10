@@ -32,7 +32,7 @@ export const convertToPng = async (file: File): Promise<File> =>
     reader.readAsDataURL(file);
 
     // 이미지가 로드되면 Canvas에 그려서 PNG로 변환
-
+    // eslint-disable-next-line consistent-return
     img.onload = () => {
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");

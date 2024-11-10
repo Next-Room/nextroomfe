@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-
 import * as S from "./ComponentMobile.styled";
 
 export default function Component5Mobile() {

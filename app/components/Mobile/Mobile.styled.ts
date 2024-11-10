@@ -17,8 +17,9 @@ export const Title = styled.h1`
 `;
 
 export const Description = styled.p`
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 140%;
-  opacity: 0.6;
+font-size: 14px;
+font-weight: 400;
+line-height: 140%;
+opacity: 0.6;
 `;
+

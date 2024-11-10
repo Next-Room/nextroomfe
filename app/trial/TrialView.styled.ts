@@ -9,7 +9,7 @@ import { Button } from "@mui/material";
 
 export const Wrapper = styled.form`
   /* background: var(--nrdark-01, #151516); */
-  height: 100vh;
+height: 100vh;
 `;
 export const Cont = styled.div`
   display: flex;

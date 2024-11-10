@@ -10,7 +10,6 @@ import {
 import "@/apis/firebase";
 import { useSignUpState } from "@/components/atoms/signup.atom";
 import useAnalytics from "@/hooks/useAnalytics";
-
 import PasswordView from "./PasswordView";
 
 interface FormValues {
@@ -37,11 +36,13 @@ function Password() {
   const { logEvent } = useAnalytics();
 
   const browserPreventEvent = () => {
+    // eslint-disable-next-line no-restricted-globals
     history.pushState(null, "", location.href);
     setSignUpState({ ...signUpState, level: 2 });
   };
 
   useEffect(() => {
+    // eslint-disable-next-line no-restricted-globals
     history.pushState(null, "", location.href);
     window.addEventListener("popstate", () => {
       browserPreventEvent();
@@ -51,12 +52,14 @@ function Password() {
         browserPreventEvent();
       });
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     setTimeout(() => {
       setFocus("password");
     }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -80,6 +83,7 @@ function Password() {
       firebase_screen: "sign_up_password",
       firebase_screen_class: "sign_up_password",
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const formProps = {

@@ -1,5 +1,4 @@
 import React from "react";
-
 import Landing from "./Landing";
 
 function LandingPage() {

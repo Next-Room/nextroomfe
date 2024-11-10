@@ -2,18 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-
 import { usePostTheme } from "@/mutations/postTheme";
 import { usePutTheme } from "@/mutations/putTheme";
 import { useSelectedTheme } from "@/components/atoms/selectedTheme.atom";
 import { useModalState } from "@/components/atoms/modalState.atom";
+import { useRouter } from "next/navigation";
 import { useGetThemeList } from "@/queries/getThemeList";
 import useChannelTalk from "@/hooks/useChannelTalk";
-
-import Dialog from "../common/Dialog/Dialog";
-
 import MakeThemeModalView from "./MakeThemePageView";
+import Dialog from "../common/Dialog/Dialog";
 
 interface FormValues {
   id: number | undefined;
@@ -28,6 +25,7 @@ function MakeThemePage() {
   const [open, setOpen] = useState<boolean>(false);
   useChannelTalk();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedTheme, setSelectedTheme] = useSelectedTheme();
   const router = useRouter();
 
@@ -71,6 +69,7 @@ function MakeThemePage() {
   const { mutateAsync: postTheme } = usePostTheme();
   const { mutateAsync: putTheme } = usePutTheme();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const submitData = {
       id: selectedTheme.id,

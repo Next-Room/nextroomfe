@@ -1,8 +1,6 @@
 import React, { useState, MouseEvent } from "react";
-
 import { useIsLoggedInWrite } from "@/components/atoms/account.atom";
 import { removeAccessToken } from "@/utils/localStorage";
-
 import HeaderView from "./HeaderView";
 
 function Header() {

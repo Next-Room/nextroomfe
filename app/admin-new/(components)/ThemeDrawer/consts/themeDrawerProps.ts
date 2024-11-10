@@ -1,5 +1,4 @@
 import { ThemeInfoTextFieldType } from "@/(shared)/(ThemeTextField)/TextFieldType";
-
 import {
   codeValidations,
   progressValidations,

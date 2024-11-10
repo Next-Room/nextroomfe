@@ -1,13 +1,14 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 import { LOGIN } from "@/consts/components/login";
 import Loader from "@/components/Loader/Loader";
 import { NewTextField } from "@/signup/NewTextField.component";
 
+import Link from "next/link";
 import * as S from "./LoginView.styled";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Props = Record<string, any>;
 
 function LoginView(props: Props) {

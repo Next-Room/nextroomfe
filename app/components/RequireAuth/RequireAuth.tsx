@@ -1,7 +1,6 @@
 "use client";
 
 import React, { ReactNode, useEffect, useMemo, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
 
 import { useGetThemeList } from "@/queries/getThemeList";
 import {
@@ -9,12 +8,12 @@ import {
   useCurrentThemeReset,
 } from "@/components/atoms/currentTheme.atom";
 import { useSelectedThemeReset } from "@/components/atoms/selectedTheme.atom";
+import { useRouter, usePathname } from "next/navigation";
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import { getSelectedThemeId } from "@/utils/localStorage";
 import * as S from "@/home/HomeView.styled";
 import Header from "@/components/common/Header/Header";
 import MainDrawer from "@/components/common/Drawer/Drawer";
-
 import Mobile from "../Mobile/Mobile";
 
 interface RequireAuthProps {
@@ -50,6 +49,7 @@ function RequireAuth({
       resetCurrentTheme();
       resetSelectedTheme();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categories, setCurrentTheme]);
   useEffect(() => {
     const selectedThemeId = getSelectedThemeId();
@@ -63,15 +63,19 @@ function RequireAuth({
     } else if (selectedThemeId !== "0" && isLoggedIn) {
       router.push(`/admin-new?themeId=${selectedThemeId}`);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn, currentTheme, router, allowUnauthPaths, pathname]);
 
   if (isLoading) {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     return <></>;
   }
 
   if (isMobile && !allowUnauthPaths.includes(pathname)) return <Mobile />;
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (!isLoggedIn) return <>{children}</>;
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (isLoggedIn && (pathname === "/" || "/admin-new")) return <>{children}</>;
 
   return (

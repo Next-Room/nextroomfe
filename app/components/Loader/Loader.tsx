@@ -1,11 +1,10 @@
 import React from "react";
 import Lottie from "react-lottie-player";
-
 import loaderJson from "../../../public/lottie/loader.json";
-
 import * as S from "./Loader.styled";
 
 type Props = {
+  // eslint-disable-next-line react/require-default-props
   isLoading?: boolean;
 };
 

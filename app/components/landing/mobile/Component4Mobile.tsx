@@ -1,7 +1,6 @@
 import React from "react";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-
 import * as S from "./ComponentMobile.styled";
 
 export default function Component4Mobile() {

@@ -1,9 +1,9 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { forwardRef, useRef } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import Image from "next/image";
-
 import { usePutTheme } from "@/mutations/putTheme";
 import { useDeleteTheme } from "@/mutations/deleteTheme";
+import { SubmitHandler, useForm } from "react-hook-form";
+import Image from "next/image";
 import {
   useSelectedTheme,
   useSelectedThemeReset,
@@ -16,11 +16,9 @@ import useClickOutside from "@/hooks/useClickOutside";
 import { deleteProps, xProps } from "@/admin-new/(consts)/sidebar";
 import useModal from "@/hooks/useModal";
 import DialogDeleteBody from "@/components/common/Dialog-new/DialogDeleteBody";
-
-import ModalPortal from "./ModalPortal";
 import DialogBody from "./DialogBody";
-
-import "@/components/common/Dialog-new/dialog.sass";
+import "@/components/common/Dialog-new/dialog.css";
+import ModalPortal from "./ModalPortal";
 
 interface DialogProps {
   type?: string | "";

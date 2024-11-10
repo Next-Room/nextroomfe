@@ -1,19 +1,21 @@
 import React, { useEffect, useMemo, useState, useCallback } from "react";
 import Image from "next/image";
+
 import { ListItemIcon, ListItemText } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 import { useGetHintList } from "@/queries/getHintList";
-
 import { HintItem } from "../HintItem";
+
 import HintManager from "../HintManager/HintManager";
 import { DeleteHintDialog } from "../DeleteHintDialog";
+
 import { useSelectedThemeValue } from "../atoms/selectedTheme.atom";
+
+import * as S from "./HintList.styled";
 import { useActiveHintState } from "../atoms/activeHint.atom";
 import Dialog from "../common/Dialog/Dialog";
 import Loader from "../Loader/Loader";
-
-import * as S from "./HintList.styled";
 
 function HintList() {
   const [isMakeEnabled, setIsMakeEnabled] = useState<boolean>(false);

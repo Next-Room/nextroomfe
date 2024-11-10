@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
-
 import ChannelTalk from "@/apis/ChannelTalk";
 import { isDevMode } from "@/consts/env";
+import { useEffect } from "react";
 
 const useChannelTalk = () => {
   useEffect(() => {

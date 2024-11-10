@@ -3,7 +3,7 @@ const SHOP_NAME = "shopName";
 const ADMIN_CODE = "adminCode";
 const STATUS = "status";
 const THEME_ID = "themeId";
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const setLocalStorage = (key: string, value: any) => {
   if (typeof window !== "undefined") {
     const storage = window.localStorage;
@@ -16,6 +16,7 @@ export const setLocalStorage = (key: string, value: any) => {
           const stringifiedValue = JSON.stringify(value);
           storage.setItem(key, stringifiedValue);
         } catch (e) {
+          // eslint-disable-next-line no-console
           console.error(`failed to stringify`);
         }
         break;
@@ -26,6 +27,7 @@ export const setLocalStorage = (key: string, value: any) => {
   }
 };
 
+// eslint-disable-next-line consistent-return
 export const getLocalStorage = (key: string, defaultValue = null) => {
   if (typeof window !== "undefined") {
     const storage = window.localStorage;

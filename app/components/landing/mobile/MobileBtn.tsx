@@ -1,11 +1,9 @@
-import { JSX, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "@/apis/firebase";
 import { useRouter } from "next/navigation";
-
 import useCheckSignIn from "@/hooks/useCheckSignIn";
 import { setCookie } from "@/utils/cookie";
 import useAnalytics from "@/hooks/useAnalytics";
-
 import * as S from "./ComponentMobile.styled";
 
 export default function Inputbar(): JSX.Element | null {

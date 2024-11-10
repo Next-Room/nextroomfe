@@ -1,14 +1,9 @@
-import { useMutation } from "@tanstack/react-query";
-import { AxiosError, AxiosResponse } from "axios";
-
 import { useSnackBarWrite } from "@/components/atoms/snackBar.atom";
 import { apiClient } from "@/lib/reactQueryProvider";
 import { ApiError, ApiResponse, MutationConfigOptions } from "@/types";
-import {
-  setAccessToken,
-  setAdminCode,
-  setShopName,
-} from "@/utils/localStorage";
+import { useMutation } from "@tanstack/react-query";
+import { AxiosError, AxiosResponse } from "axios";
+import { setAccessToken, setAdminCode, setShopName } from "@/utils/localStorage";
 import { useIsLoggedInWrite } from "@/components/atoms/account.atom";
 
 interface Request {
@@ -52,7 +47,7 @@ export const usePostLogin = (configOptions?: MutationConfigOptions) => {
       if (data?.accessToken) {
         setAccessToken(data.accessToken);
         setShopName(data.shopName);
-        setAdminCode(data.adminCode);
+        setAdminCode(data.adminCode)
         setIsLoggedIn(true);
       }
     },

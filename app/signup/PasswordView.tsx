@@ -1,14 +1,14 @@
 import React from "react";
-
 import { NEXT } from "@/consts/components/signUp";
-
 import { NewTextField } from "./NewTextField.component";
 import * as S from "./SignUpView.styled";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Props = Record<string, any>;
 
 function PasswordView(props: Props) {
   const { formProps, passwordProps, passwordConfirmProps, buttonProps } = props;
+
 
   return (
     <S.Cont>

@@ -1,7 +1,6 @@
 import React, { forwardRef, useEffect } from "react";
 import { useAnimation } from "framer-motion";
 import Image from "next/image";
-
 import "@/apis/firebase";
 import * as S from "@/components/landing/pc/Component.styled";
 import useAnalytics from "@/hooks/useAnalytics";

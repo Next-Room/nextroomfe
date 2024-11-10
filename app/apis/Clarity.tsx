@@ -2,7 +2,6 @@
 
 import Script from "next/script";
 import { usePathname } from "next/navigation";
-
 import { isDevMode } from "@/consts/env";
 
 function Clarity() {

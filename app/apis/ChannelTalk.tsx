@@ -1,3 +1,4 @@
+/* eslint-disable */
 declare global {
   interface Window {
     ChannelIO?: IChannelIO;
@@ -79,7 +80,6 @@ class ChannelService {
         return w.console.error("ChannelIO script included twice.");
       }
       const ch: IChannelIO = function () {
-        // eslint-disable-next-line prefer-rest-params
         ch.c?.(arguments);
       };
       ch.q = [];

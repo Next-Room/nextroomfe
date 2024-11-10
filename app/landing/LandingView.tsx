@@ -1,7 +1,5 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-
 import Component1 from "@/components/landing/pc/Component1";
 import Component2 from "@/components/landing/pc/Component2";
 import Component3 from "@/components/landing/pc/Component3";
@@ -11,6 +9,8 @@ import Component6 from "@/components/landing/pc/Component6";
 import Component7 from "@/components/landing/pc/Component7";
 // import Component8 from "@/components/landing/pc/Component8";
 import Component9 from "@/components/landing/pc/Component9";
+import React, { useState, useEffect, useRef } from "react";
+
 import Component1Mobile from "@/components/landing/mobile/Component1Mobile";
 import Component2Mobile from "@/components/landing/mobile/Component2Mobile";
 import Component3Mobile from "@/components/landing/mobile/Component3Mobile";
@@ -20,11 +20,9 @@ import Component6Mobile from "@/components/landing/mobile/Component6Mobile";
 import Component7Mobile from "@/components/landing/mobile/Component7Mobile";
 // import Component8Mobile from "@/components/landing/mobile/Component8Mobile";
 import Component9Mobile from "@/components/landing/mobile/Component9Mobile";
-
-import MobileBtn from "../components/landing/mobile/MobileBtn";
-import PcBtn from "../components/landing/pc/PcBtn";
-
 import * as S from "./LandingView.styled";
+import PcBtn from "../components/landing/pc/PcBtn";
+import MobileBtn from "../components/landing/mobile/MobileBtn";
 
 // import HomeView from "./HomeView";
 type Props = Record<string, any>;

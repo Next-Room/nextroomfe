@@ -1,5 +1,4 @@
 import { useCallback, useEffect } from "react";
-
 import DialogView from "./DialogView";
 
 type ContentType = "hintPut" | "themePut" | "hintPost" | "themePost";

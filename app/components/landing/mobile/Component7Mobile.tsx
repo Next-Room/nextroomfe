@@ -1,5 +1,4 @@
 import React, { useState, useEffect, forwardRef } from "react";
-
 import Phone from "./Phone";
 import Phone2 from "./Phone2";
 import Phone3 from "./Phone3";
@@ -27,6 +26,7 @@ const Component7 = forwardRef<HTMLDivElement>((_, ref) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -7,11 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:prettier": "prettier --cache --write .",
-    "lint:eslint": "eslint \"app/**/*.{ts,tsx}\"",
-    "fix:eslint": "eslint \"app/**/*.{ts,tsx}\" --fix",
-    "lint:type": "tsc --pretty",
-    "preinstall": "husky install"
+    "cypress": "cypress open",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -21,6 +19,8 @@
     "@mui/icons-material": "^5.14.0",
     "@mui/material": "^5.13.7",
     "@mui/styled-engine": "^5.13.2",
+    "@storybook/addon-actions": "^7.4.6",
+    "@storybook/addons": "^7.4.6",
     "@tanstack/react-query": "^4.29.19",
     "@tanstack/react-query-devtools": "^4.29.19",
     "@types/node": "20.3.3",
@@ -29,6 +29,7 @@
     "axios": "^1.4.0",
     "browser-image-compression": "^2.0.2",
     "classnames": "^2.5.1",
+    "eslint-config-next": "13.4.7",
     "firebase": "^10.6.0",
     "framer-motion": "^10.16.4",
     "lodash": "^4.17.21",
@@ -45,20 +46,33 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.4.2",
+    "@storybook/addon-interactions": "^7.4.2",
+    "@storybook/addon-links": "^7.4.2",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.4.2",
+    "@storybook/nextjs": "^7.4.2",
+    "@storybook/react": "^7.4.2",
+    "@storybook/testing-library": "^0.2.1",
     "@svgr/webpack": "^8.0.1",
     "@types/http-proxy": "^1.17.15",
-    "@types/lodash": "^4.17.13",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
     "babel-plugin-styled-components": "^2.1.4",
+    "cypress": "^12.16.0",
     "eslint": "^8.44.0",
-    "eslint-config-next": "^15.0.3",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.6.13",
     "husky": "^8.0.3",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "storybook": "^7.4.2"
   }
 }

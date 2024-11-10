@@ -1,6 +1,5 @@
 import React from "react";
-
-import "./toast.sass";
+import "./toast.css";
 import { useToastValue } from "@/components/atoms/toast.atom";
 
 export default function Toast() {

@@ -1,8 +1,6 @@
 import React from "react";
-import { useSearchParams } from "next/navigation";
-
 import { useModalStateValue } from "@/components/atoms/modals.atom";
-
+import { useSearchParams } from "next/navigation";
 import CreateTheme from "./CreateTheme/Container";
 import ThemeInfo from "./ThemeInfo/Container";
 

@@ -1,5 +1,4 @@
 import React from "react";
-
 import Trial from "./Trial";
 
 function TrialPage() {

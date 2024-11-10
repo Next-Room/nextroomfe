@@ -2,17 +2,17 @@ import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { usePutHint } from "@/mutations/putHint";
 import { usePostHint } from "@/mutations/postHint";
+import { usePutHint } from "@/mutations/putHint";
 
 import { useSelectedThemeValue } from "../atoms/selectedTheme.atom";
 import {
   useIsActiveHintItemState,
   useIsOpenDeleteDialogStateWrite,
 } from "../atoms/hints.atom";
-import Dialog from "../common/Dialog/Dialog";
 
 import HintManagerView from "./HintManagerView";
+import Dialog from "../common/Dialog/Dialog";
 
 const MAKE = "make";
 
@@ -20,7 +20,9 @@ type Props = {
   active: boolean;
   close: () => void;
   type: "make" | "modify";
+  // eslint-disable-next-line react/require-default-props
   id?: number;
+  // eslint-disable-next-line react/require-default-props
   hintData?: FormValues;
   // dialogOpen: () => void;
 };
@@ -46,7 +48,8 @@ function HintManager(props: Props) {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const { mutateAsync: postHint } = usePostHint();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { mutateAsync: postHint, isSuccess: postHintSuccess } = usePostHint();
   const { mutateAsync: putHint } = usePutHint();
   const { id: themeId } = useSelectedThemeValue();
   const formRef = useRef<HTMLFormElement>(null);
@@ -94,7 +97,7 @@ function HintManager(props: Props) {
         // setSubmitDisable(true);
       }
     });
-
+    // eslint-disable-next-line consistent-return
     return () => subscription.unsubscribe();
   }, [hintData, watch]);
 
@@ -125,12 +128,12 @@ function HintManager(props: Props) {
 
   const key = `${type}-${id}`;
 
-  const onSubmit: SubmitHandler<FormValues> = _.debounce((data: any) => {
+  const onSubmit: SubmitHandler<FormValues> = _.debounce((data) => {
     const { progress, hintCode, contents, answer } = data;
 
     if (!(progress && hintCode && contents && answer)) {
       // TODO: add error message
-
+      // eslint-disable-next-line no-console
       console.error("please check code");
       return;
     }
@@ -201,6 +204,7 @@ function HintManager(props: Props) {
     return () => {
       document.removeEventListener("click", deactivateForm);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const formProps = {

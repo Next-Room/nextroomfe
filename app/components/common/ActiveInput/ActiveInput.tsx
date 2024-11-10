@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
-
 import * as S from "./ActiveInput.styled";
 
 export interface ActiveInputProps {
+  // eslint-disable-next-line react/require-default-props
   type?: string;
+  // eslint-disable-next-line react/require-default-props
   placeholder?: string | number;
+  // eslint-disable-next-line react/require-default-props, react/no-unused-prop-types
   multiline?: boolean;
+  // eslint-disable-next-line react/require-default-props
   register: UseFormRegisterReturn;
 }
 function ActiveInput(props: ActiveInputProps) {

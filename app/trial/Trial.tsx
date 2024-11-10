@@ -1,13 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-
 import { EMAIL } from "@/consts/components/trial";
+import { SubmitHandler, useForm } from "react-hook-form";
 import "@/apis/firebase";
 import { usePostInfo } from "@/mutations/postInfo";
 import useAnalytics from "@/hooks/useAnalytics";
-
 import TrialView from "./TrialView";
 
 interface FormValues {

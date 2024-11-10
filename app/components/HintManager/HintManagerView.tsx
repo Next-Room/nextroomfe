@@ -5,12 +5,19 @@ import * as S from "./HintManagerView.styled";
 
 interface Props {
   errorMsg: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   progressInputProps: Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   hintCodeInputProps: Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   contentsInputProps: Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   answerInputProps: Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   deleteButtonProps: Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formProps: Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   makeHintButtonProps: Record<string, any>;
   isCurrentHintActive: boolean;
   wrapperProps: { onClick: (event: React.MouseEvent) => void };

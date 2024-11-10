@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { useEffect } from "react";
 
 const useOnBeforeUnload = (isLoading: boolean) => {
@@ -5,7 +6,7 @@ const useOnBeforeUnload = (isLoading: boolean) => {
     const handleWindowClose = (e: BeforeUnloadEvent) => {
       if (!isLoading) return;
       e.preventDefault();
-
+      // eslint-disable-next-line no-return-assign
       return (e.returnValue = "");
     };
 
@@ -14,6 +15,7 @@ const useOnBeforeUnload = (isLoading: boolean) => {
     return () => {
       window.removeEventListener("beforeunload", handleWindowClose);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
 

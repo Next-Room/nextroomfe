@@ -98,8 +98,9 @@ export const ItemWrapper = styled.div`
     overflow: hidden;
 
     span {
-      overflow: hidden;
-      text-overflow: ellipsis;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     }
   }
 `;

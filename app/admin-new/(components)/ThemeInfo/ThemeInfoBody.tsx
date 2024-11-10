@@ -1,6 +1,5 @@
-import React from "react";
-
 import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
+import React from "react";
 
 interface Props {
   handleOpenModal: () => void;

@@ -1,0 +1,182 @@
+.button32 {
+  height: 32px;
+  padding: 10px 11px;
+  border-radius: 8px;
+  margin: auto;
+  background-color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 100%;
+}
+.button32:hover {
+  color: black;
+  background-color: rgba(255, 255, 255, 0.6980392157);
+}
+.button32:active {
+  color: black;
+  background-color: rgba(255, 255, 255, 0.5019607843);
+}
+.button32:disabled {
+  color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.outline_button32 {
+  height: 32px;
+  padding: 10px 11px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: auto;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 100%;
+}
+.outline_button32:hover {
+  background-color: rgba(255, 255, 255, 0.0509803922);
+}
+.outline_button32:active {
+  background-color: rgba(255, 255, 255, 0.0784313725);
+}
+.outline_button32:disabled {
+  color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1215686275);
+}
+
+.icon_button32 {
+  height: 32px;
+  padding: 8px 8px 8px 6px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 100%;
+}
+.icon_button32 img {
+  vertical-align: text-top;
+  margin-right: 4px;
+}
+.icon_button32:hover {
+  background-color: rgba(255, 255, 255, 0.0509803922);
+}
+.icon_button32:active {
+  background-color: rgba(255, 255, 255, 0.0784313725);
+}
+.icon_button32:disabled {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.theme-infomation {
+  width: 100%;
+  height: 100%;
+}
+.theme-infomation__title {
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 22px 0;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 120%;
+  color: #fff;
+}
+.theme-infomation__title .theme-infomation-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.theme-infomation__title .theme-infomation-fit:hover {
+  color: rgba(255, 255, 255, 0.5019607843);
+}
+.theme-infomation__title .theme-infomation-fit:hover .image {
+  background-image: url(/images/svg/icon_ArrowDownMini_hover.svg);
+}
+.theme-infomation__title .theme-infomation-fit:active {
+  color: rgba(255, 255, 255, 0.2);
+}
+.theme-infomation__title .theme-infomation-fit:active .image {
+  background-image: url(/images/svg/icon_ArrowDownMini_active.svg);
+}
+.theme-infomation__title .theme-infomation-fit .title {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.theme-infomation__title .theme-infomation-fit .image {
+  width: 24px;
+  height: 24px;
+  background-image: url(/images/svg/icon_ArrowDownMini_default.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.theme-infomation__body {
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.theme-infomation-text {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+  color: rgba(255, 255, 255, 0.5019607843);
+  cursor: default;
+}
+
+.theme-infomation-container {
+  display: flex;
+  gap: 16px;
+}
+
+.theme-infomation-box {
+  position: relative;
+  width: 50%;
+  height: 82px;
+  padding: 17px 24px 17px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.0784313725);
+  box-sizing: border-box;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+.theme-infomation-box div {
+  cursor: pointer;
+}
+.theme-infomation-box:hover {
+  background-color: rgba(255, 255, 255, 0.0509803922);
+}
+.theme-infomation-box:hover .theme-infomation-modify-text {
+  color: #fff;
+  display: block;
+}
+.theme-infomation-box:active {
+  background-color: rgba(255, 255, 255, 0.0784313725);
+}
+.theme-infomation-box:active .theme-infomation-modify-text {
+  display: block;
+  color: #fff;
+}
+
+.theme-infomation-content-text {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 120%;
+  color: #fff;
+}
+
+.theme-infomation-modify-text {
+  display: none;
+  position: absolute;
+  right: 24px;
+  top: 31px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+}

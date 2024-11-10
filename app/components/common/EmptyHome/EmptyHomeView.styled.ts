@@ -12,4 +12,5 @@ export const Title = styled.div`
 export const AddButton = styled(Button)`
   font-weight: bold;
   margin-bottom: 1rem;
+ 
 `;

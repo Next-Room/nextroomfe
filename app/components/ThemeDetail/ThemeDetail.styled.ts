@@ -5,8 +5,9 @@ export const Wrapper = styled(Box)`
   display: flex;
   margin: 0 auto;
   flex-direction: column;
-
+  
   flex: 1; /* 남은 공간을 차지 */
+
 `;
 
 export const Title = styled.div`

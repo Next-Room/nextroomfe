@@ -15,8 +15,8 @@ import {
   RETURN_HOME,
 } from "@/consts/components/trial";
 import "@/apis/firebase"; // Firebase 초기화 파일 임포트
-import useAnalytics from "@/hooks/useAnalytics";
 
+import useAnalytics from "@/hooks/useAnalytics";
 import * as S from "./TrialView.styled";
 
 type Props = Record<string, any>;

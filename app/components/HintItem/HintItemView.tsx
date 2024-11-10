@@ -1,6 +1,7 @@
 import React from "react";
 
 import * as S from "./HintItemView.styled";
+// eslint-disable-next-line import/no-cycle
 import { HintData } from "./HintItem";
 
 type Props = {

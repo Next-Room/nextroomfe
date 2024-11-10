@@ -1,6 +1,4 @@
 import React from "react";
-import classNames from "classnames";
-
 import { useGetHintList } from "@/queries/getHintList";
 import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
 import {
@@ -9,6 +7,7 @@ import {
   useSelectedHintReset,
 } from "@/components/atoms/selectedHint.atom";
 import { useCreateHintReset } from "@/components/atoms/createHint.atom";
+import classNames from "classnames";
 
 interface ThemeDrawerProps {
   handleHintCreate: (type: string) => void;
@@ -104,8 +103,8 @@ const ThemeInfoHint: React.FC<ThemeDrawerProps> = ({
                   <div className="table-hint">
                     <div className="hint-content">{contents}</div>
                     <div className="hint-images">
-                      {hintImageUrlList?.map((_, index) => (
-                        <div className="hint-image-box" key={index}>
+                      {hintImageUrlList?.map(() => (
+                        <div className="hint-image-box">
                           <div className="hint-image" />
                         </div>
                       ))}
@@ -114,8 +113,8 @@ const ThemeInfoHint: React.FC<ThemeDrawerProps> = ({
                   <div className="table-answer">
                     <div className="hint-content">{answer}</div>
                     <div className="hint-images">
-                      {answerImageUrlList?.map((_, index) => (
-                        <div className="hint-image-box" key={index}>
+                      {answerImageUrlList?.map(() => (
+                        <div className="hint-image-box">
                           <div className="hint-image" />
                         </div>
                       ))}

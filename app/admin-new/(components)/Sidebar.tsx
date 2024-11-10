@@ -1,8 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import classNames from "classnames";
-import { useRouter, useSearchParams } from "next/navigation";
-
 import {
   logoProps,
   plusDisableProps,
@@ -10,6 +8,7 @@ import {
   subscribeLinkURL,
 } from "@/admin-new/(consts)/sidebar";
 import { getSelectedThemeId, getStatus } from "@/utils/localStorage";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSelectedThemeReset } from "@/components/atoms/selectedTheme.atom";
 
 interface Theme {

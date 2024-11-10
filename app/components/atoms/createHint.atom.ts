@@ -5,7 +5,6 @@ import {
   useSetRecoilState,
   useResetRecoilState,
 } from "recoil";
-
 import { SelectedHintType } from "./selectedHint.atom";
 
 const createHintState = atom<SelectedHintType>({

@@ -1,11 +1,11 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosError, AxiosResponse } from "axios";
-
 import { useSignUpWrite } from "@/components/atoms/signup.atom";
 import { useSnackBarWrite } from "@/components/atoms/snackBar.atom";
 import { apiClient } from "@/lib/reactQueryProvider";
 import { QUERY_KEY } from "@/queries/getHintList";
 import { ApiError, ApiResponse, MutationConfigOptions } from "@/types";
+
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { AxiosError, AxiosResponse } from "axios";
 
 interface Request {
   email: string;
@@ -50,7 +50,7 @@ export const usePostSendMessage = (configOptions?: MutationConfigOptions) => {
       //   console.log("항상 실행");
     },
     onError: (error) => {
-      console.error(error);
+      console.log(error);
     },
   });
 

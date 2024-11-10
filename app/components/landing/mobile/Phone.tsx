@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useScroll, useTransform } from "framer-motion";
+
 import Image from "next/image";
 import "@/apis/firebase";
 

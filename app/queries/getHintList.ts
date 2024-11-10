@@ -1,9 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import { AxiosRequestConfig, AxiosResponse } from "axios";
-
 import { useSnackBarWrite } from "@/components/atoms/snackBar.atom";
 import { apiClient } from "@/lib/reactQueryProvider";
 import { ApiResponse, QueryConfigOptions } from "@/types";
+import { useQuery } from "@tanstack/react-query";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 
 type Request = { themeId: number };
 export type Hints = {
