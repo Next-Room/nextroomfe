@@ -21,7 +21,6 @@ type Theme = {
 
 function Admin() {
   const { data: categories = [], isLoading } = useGetThemeList();
-
   const isLoggedIn = useCheckSignIn();
 
   const [selectedTheme, setSelectedTheme] = useSelectedTheme();
@@ -29,6 +28,12 @@ function Admin() {
 
   const [toast, setToast] = useToastInfo();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && categories.length > 0 && selectedTheme.id === 0) {
+      setSelectedTheme(categories[categories.length - 1]);
+    }
+  }, [isLoading]);
 
   const handleClickSelected = (theme: Theme) => {
     setSelectedTheme(theme);
@@ -56,10 +61,6 @@ function Admin() {
     handleClickSelected,
     isOpen: toast.isOpen,
   };
-
-  if (!isLoggedIn || isLoading) {
-    return <Loader />;
-  }
 
   return <AdminView {...SidebarViewProps} />;
 }

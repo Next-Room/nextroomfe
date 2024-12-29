@@ -43,20 +43,6 @@ export const smallXProps = {
   height: 16,
 };
 
-export const previewProps = {
-  src: "/images/svg/image.png",
-  alt: "x icon",
-  width: 315,
-  height: 682,
-};
-
-export const statusBarProps = {
-  src: "/images/svg/status_bar.svg",
-  alt: "status_bar",
-  width: 315,
-  height: 40,
-};
-
 export const timerPreviewProps = {
   src: "/images/svg/timer_preview.svg",
   alt: "timer_preview",
@@ -71,6 +57,22 @@ export const settingProps = {
   height: 24,
 };
 
+export const QuestionIconProps = {
+  src: "/images/svg/icon_question.svg",
+  alt: "gallery_image",
+  width: 24,
+  height: 24,
+};
+
+export const timerPreviewLineProps = {
+  src: "/images/svg/timer_preview_entire.svg",
+  alt: "TIMER_LINE_IMAGE",
+  width: 158,
+  height: 340,
+};
+
+export const defaultTimerImage = "/images/svg/icon_preview.svg";
+export const defaultTimerImagePreview = "/images/svg/timer_preview.svg";
 export const timerTooltipProps = {
   src: "/images/png/tooltip.png",
   alt: "tooltip",

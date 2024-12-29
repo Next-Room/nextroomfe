@@ -62,7 +62,7 @@ export default function Sidebar(props: Props) {
         `/admin?themeId=${encodeURIComponent(selectedThemeId)}
       `
       );
-  }, [selectedThemeId]);
+  }, [selectedThemeId, params]);
 
   const navigateToNewTheme = () => {
     resetSelectedTheme();

@@ -11,7 +11,7 @@ import ThemeDrawer from "../ThemeDrawer/Container";
 
 import ThemeInfoTitle from "./ThemeInfoTitle";
 import ThemeInfoHint from "./ThemeInfoHint";
-import ThemeImage from "./ThemeImage";
+import ThemeImage from "./ThemeTimerImage";
 
 export default function ThemeInfo() {
   const { open } = useModal();

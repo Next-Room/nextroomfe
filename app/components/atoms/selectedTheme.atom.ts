@@ -11,6 +11,8 @@ interface SelectedTheme {
   title: string;
   timeLimit: number;
   hintLimit: number;
+  themeImageUrl?: string;
+  useTimerUrl?: boolean;
 }
 
 export const InitialSelectedTheme: SelectedTheme = {

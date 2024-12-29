@@ -26,12 +26,12 @@ export default function ThemeImage() {
   const handleAddImageBtnClick = () => {
     // 숨겨진 input 클릭 트리거
     // imgInputRef.current?.click();
-    open(Dialog, { type: "put" });
+    open(Dialog);
   };
   const handlePreviewImageBtnClick = () => {
     // 숨겨진 input 클릭 트리거
     // imgInputRef.current?.click();
-    open(PreviewDialog, { type: "put" });
+    open(PreviewDialog);
   };
   const [isHovered, setIsHovered] = useState(false);
 
