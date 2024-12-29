@@ -6,89 +6,48 @@
   width: 100%
   height: 100%
   transition: width 0.4s ease
+
   &__title
     height: fit-content
-    padding: 23px 0
-    @include title24M
+    padding: 30px 0
+    @include title24SB
     color: $color-white
-    .theme-infomation-fit
-      width: fit-content
-      display: flex
-      justify-content: left
-      align-items: center
-      gap: 4px
-      cursor: pointer
-      &:hover
-        color: $color-white50
-        .image
-          background-image: url(/images/svg/icon_ArrowDownMini_hover.svg)
-      &:active
-        color: $color-white20
-        .image
-          background-image: url(/images/svg/icon_ArrowDownMini_active.svg)
-      .title
-        width: fit-content
-      .image
-        width: 24px
-        height: 24px
-        background-image: url(/images/svg/icon_ArrowDownMini_default.svg)
-        background-repeat: no-repeat
-        background-position: center
-        background-size: cover
+    position: relative
 
-
-  &__body
-    height: fit-content
-    display: flex
-    flex-direction: column
-    gap: 12px
 
 .drawer-open
   width: calc(100% - 520px)
 
+.decoration-line
+  position: absolute
+  top: 126px
+  left: -40px
+  width: 100vw
+  height: 1px
+  background-color: $color-white5  
+
+.theme-infomation-text-box
+  margin-top: 17px
+  display: flex
+  align-items: center
+  gap: 8px
+.dot
+  width: 3px
+  height: 3px
+  border-radius: 50%
+  background-color: white
+.setting-button
+  position: absolute
+  right: 0
+  top: 30px
+
 .theme-infomation-text
   @include body14M
   color: $color-white50
-  cursor: default
-.theme-infomation-container
-  display: flex
-  gap: 16px
-.theme-infomation-box
-  position: relative
-  width: 50%
-  height: 82px
-  padding: 17px 24px 17px 20px
-  border: 1px solid $color-white8
-  box-sizing: border-box
-  border-radius: 8px
-  display: flex
-  flex-direction: column
-  gap: 4px
-  cursor: pointer
-  div
-    cursor: pointer
-  &:hover
-    background-color: $color-white5
-    .theme-infomation-modify-text
-      color: $color-white
-      display: block
-  &:active
-    background-color: $color-white8
-    .theme-infomation-modify-text
-      display: block
-      color: $color-white
 
 .theme-infomation-content-text
-  @include title18M
-  color: $color-white
-
-.theme-infomation-modify-text
-  display: none
-  position: absolute
-  right: 24px
-  top: 31px
   @include body14M
-
+  color: $color-white
 
 .theme-hint
   width: 100%
@@ -352,3 +311,51 @@
     border-radius: 8px
     max-height: 300px
     max-width: 100%
+
+
+.theme_image
+  &__container
+    margin-top: 38px
+
+
+  background-color: $color-white5
+.theme-image-title
+  display: flex
+  span
+    @include title16SB
+    margin-right: 2px
+  img
+    vertical-align: bottom
+
+
+
+.theme-images
+  display: flex
+  gap: 16px
+  margin-top: 17px
+  position: relative
+  align-items: flex-end
+  &:hover
+    .theme-image-box:hover .theme-image-dimmed
+      visibility: visible
+      cursor: pointer
+.theme-image-dimmed
+  position: absolute
+  top: 0
+  width: 100%
+  height: 100%
+  background-color: $color-black60
+  border-radius: 8px
+  display: flex
+  justify-content: center
+  align-items: center
+  visibility: hidden
+.theme-image-box
+  width: 120px
+  height: 120px
+  position: relative
+  img
+    border: 1px solid $color-white20
+    object-fit: contain
+    border-radius: 12px
+

@@ -17,7 +17,15 @@ import * as S from "./SignUpSuccess.styled";
 import "@/apis/firebase";
 
 function SignUpSuccess() {
-  const isWebView = /APP_NEXTROOM_ANDROID/.test(navigator.userAgent); // 웹뷰에서 실행 중인지 여부 확인
+  const [isWebView, setIsWebView] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const { userAgent } = window.navigator;
+      const mwebviewRegex = /APP_NEXTROOM_ANDROID/i;
+      setIsWebView(mwebviewRegex.test(userAgent));
+    }
+  }, []);
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [snackInfo, setSnackBarInfo] = useSnackBarInfo();
   const router = useRouter();

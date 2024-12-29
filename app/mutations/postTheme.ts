@@ -1,14 +1,10 @@
-import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosRequestConfig, AxiosResponse, AxiosResponseHeaders } from "axios";
 
-import { useSelectedThemeWrite } from "@/components/atoms/selectedTheme.atom";
-import { useCreateThemeValue } from "@/components/atoms/createTheme.atom";
 import { useToastWrite } from "@/components/atoms/toast.atom";
 import { apiClient } from "@/lib/reactQueryProvider";
 import { QUERY_KEY } from "@/queries/getThemeList";
 import { MutationConfigOptions } from "@/types";
-import { setSelectedThemeId } from "@/utils/storageUtil";
 
 interface Request {
   title: string;
@@ -42,9 +38,6 @@ export const postTheme = async (
 export const usePostTheme = (configOptions?: MutationConfigOptions) => {
   const queryClient = useQueryClient();
   const setToast = useToastWrite();
-  const router = useRouter();
-  const setSelectedTheme = useSelectedThemeWrite();
-  const createTheme = useCreateThemeValue();
 
   const info = useMutation<
     AxiosResponse<PostThemeResponseType>,
@@ -57,12 +50,6 @@ export const usePostTheme = (configOptions?: MutationConfigOptions) => {
     ...configOptions?.options,
     onSuccess: ({ data }) => {
       queryClient.invalidateQueries(QUERY_KEY);
-      setTimeout(() => {
-        setSelectedTheme({ ...createTheme, id: data?.data?.id });
-        setSelectedThemeId(data?.data?.id);
-
-        router.push(`/admin?themeId=${data?.data?.id}`);
-      }, 10);
       setToast({
         isOpen: true,
         title: "테마를 추가했습니다.",

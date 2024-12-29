@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
-import { useRouter } from "next/navigation";
 
 import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
 import { useToastWrite } from "@/components/atoms/toast.atom";
@@ -30,15 +29,12 @@ export const putTheme = async (req: Request) => {
 export const usePutTheme = (configOptions?: MutationConfigOptions) => {
   const queryClient = useQueryClient();
   const setToast = useToastWrite();
-  const selectedTheme = useSelectedThemeValue();
-  const router = useRouter();
   const info = useMutation<Response, void, Request, void>({
     mutationKey: MUTATION_KEY,
     mutationFn: (req) => putTheme(req),
     ...configOptions?.options,
     onSuccess: () => {
       queryClient.invalidateQueries(QUERY_KEY);
-      router.push(`/admin?themeId=${selectedTheme.id}`);
 
       setToast({
         isOpen: true,

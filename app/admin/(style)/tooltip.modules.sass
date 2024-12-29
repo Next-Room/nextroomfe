@@ -1,0 +1,41 @@
+@import '../../style/variables'
+@import '../../style/mixins'
+
+.arrow
+  position: absolute
+  top: -12px
+  left: 139px
+
+.tooltip-container
+  position: fixed
+  top: 200px
+  left: 260px
+  z-index: 999
+  
+.content-container
+  display: hidden
+  background-color: white
+  width: 298px
+  height: 421px
+  border-radius: 12px
+  padding: 24px
+
+  &__title 
+    @include title16SB
+    color: $color-black
+
+  &__content
+    @include body14R
+    color: $color-sub2
+    margin: 8px 0 16px
+
+  &__image
+    width: 250px
+    height: 250px
+    background-color: #0000001F
+    border-radius: 12px
+    padding: 12px 0 14px
+    display: flex
+    flex-direction: column
+    align-items: center
+

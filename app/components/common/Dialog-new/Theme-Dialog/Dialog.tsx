@@ -1,6 +1,7 @@
 import React, { forwardRef, useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import { usePutTheme } from "@/mutations/putTheme";
 import { useDeleteTheme } from "@/mutations/deleteTheme";
@@ -15,9 +16,9 @@ import {
 import useClickOutside from "@/hooks/useClickOutside";
 import { deleteProps, xProps } from "@/admin/(consts)/sidebar";
 import useModal from "@/hooks/useModal";
-import DialogDeleteBody from "@/components/common/Dialog-new/DialogDeleteBody";
+import DialogDeleteBody from "@/components/common/Dialog-new/Theme-Dialog/DialogDeleteBody";
+import ModalPortal from "@/components/common/Dialog-new/ModalPortal";
 
-import ModalPortal from "./ModalPortal";
 import DialogBody from "./DialogBody";
 
 import "@/components/common/Dialog-new/dialog.sass";
@@ -58,8 +59,8 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props) => {
 
   const { mutateAsync: putTheme } = usePutTheme();
   const { mutateAsync: deleteTheme } = useDeleteTheme();
-
-  const onSubmit: SubmitHandler<FormValues> = () => {
+  const router = useRouter();
+  const onSubmit: SubmitHandler<FormValues> = async () => {
     const { id } = selectedTheme;
 
     const submitData = {
@@ -68,12 +69,21 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props) => {
     };
 
     if (type === "put") {
-      putTheme(submitData);
-      setSelectedTheme(submitData);
+      try {
+        await putTheme(submitData);
+        setSelectedTheme(submitData);
+      } catch (error) {
+        console.error("Error updating theme:", error);
+      }
     } else if (type === "delete") {
-      deleteTheme({ id });
-      resetSelectedTheme();
+      try {
+        await deleteTheme({ id });
+        router.push(`/admin`);
+      } catch (error) {
+        console.error("Error deleting theme:", error);
+      }
     }
+
     close();
     resetCreateTheme();
 

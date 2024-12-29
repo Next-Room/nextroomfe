@@ -19,7 +19,8 @@
     justify-content: space-between
     align-items: center
     margin-bottom: 12px
-
+    &.noti
+      justify-content: center  // 중앙 정렬  
     h2
       @include title20SB
 
@@ -42,6 +43,71 @@
     .text
       padding-bottom: 10px 
 
+  &__preview-content
+    position: relative
+
+    .preview
+      width: 315px
+      height: 682px
+      border-radius: 13px
+      object-fit: contain
+      position: absolute
+    .status_bar
+      position: absolute
+    .mobile_preview
+      position: absolute
+        
+  &__image-content
+    width: 513px
+    height: 434px
+    padding: 20px
+    margin: 20px 0 16px
+    background-color: $color-white5
+    border-radius: 8px
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: 16px 
+
+  &__noti-content
+    width: 521px
+    height: 333px
+    position: relative
+    padding: 20px
+    margin: 24px 0 28px
+    background-color: $color-white5
+    border-radius: 12px
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: 16px 
+
+    img
+      position: absolute
+      bottom: 0
+      left: 50px
+
+  &__feature-description
+    position: absolute
+    width: 261px
+    top: 133px
+    left: 236px
+    &__title
+      @include body14M
+      background-color: $color-white12
+      padding: 2px 12px
+      border-radius: 6px
+    
+    &__summary
+      @include body14M
+      margin: 16px 0
+      
+    &__detail
+      @include body14R
+      color: $color-white70
+      
   &__footer
     margin-top: 16px
     display: flex
@@ -60,4 +126,91 @@
   z-index: 600
 .put
   z-index: 100
-    
+
+
+.theme-preview-modal
+  position: fixed
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  display: flex
+  gap: 16px
+
+  .preview_image
+    position: relative
+    width: 315px
+    height: 682px
+    .preview
+
+      border-radius: 13px
+      object-fit: contain
+      position: absolute
+    .status_bar
+      position: absolute
+    .mobile_preview
+      position: absolute
+      bottom: 32px
+      left: 50%
+
+      transform: translateX( -50%)
+
+
+.preview-text
+  @include caption12M
+  color: $color-white70
+  position: absolute
+  top: 20px
+  left: 20px
+
+
+.preview-caption
+  width: 100%
+  height: 38px
+  display: flex
+  background-color:#378EFF24
+  align-items: center
+  justify-content: center
+  border-radius: 4px
+  @include caption12M
+  color: #378EFF
+
+
+.dont-show-again
+  display: flex
+  align-items: center
+  gap: 8px
+  padding: 8px
+  color: $color-white70
+  @include body14M
+  cursor: pointer
+  user-select: none
+
+  input[type="checkbox"]
+    appearance: none
+    width: 16px
+    height: 16px
+    border: 1.5px solid $color-white12
+    border-radius: 3px
+    background-color: transparent
+    cursor: pointer
+    position: relative
+
+    &:checked
+      background-color: #666
+      border-color: #666
+
+      &::after
+        content: ''
+        position: absolute
+        left: 5px
+        top: 2px
+        width: 4px
+        height: 8px
+        border: solid white
+        border-width: 0 2px 2px 0
+        transform: rotate(45deg)
+
+  label
+    cursor: pointer
+    color: rgba(255, 255, 255, 0.7)
+    font-size: 14px

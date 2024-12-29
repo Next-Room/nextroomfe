@@ -1,6 +1,6 @@
 import { useState, useEffect, FormEvent, useRef } from "react";
 
-import HintDialog from "@/components/common/Hint-Dialog-new/Dialog";
+import HintDialog from "@/components/common/Dialog-new/Hint-Dialog-new/Dialog";
 import {
   InitialSelectedHint,
   SelectedHintType,

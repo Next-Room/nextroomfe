@@ -22,14 +22,27 @@ interface FormValues {
 function StoreInfo() {
   const isLoggedIn = useIsLoggedInValue();
   const [signUpState, setSignUpState] = useSignUpState();
-  const isWebView = /APP_NEXTROOM_ANDROID/.test(navigator.userAgent); // 웹뷰에서 실행 중인지 여부 확인
-  const isMobile =
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(
-      navigator.userAgent
-    );
+  const [isWebView, setIsWebView] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
   const { logEvent } = useAnalytics();
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const { userAgent } = window.navigator;
+
+      const mwebviewRegex = /APP_NEXTROOM_ANDROID/i;
+      setIsWebView(mwebviewRegex.test(userAgent));
+
+      const mobileRegex =
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
+      setIsMobile(mobileRegex.test(userAgent));
+    }
+  }, []);
+
   const type = isWebView ? 3 : isMobile ? 2 : 1;
+
   useEffect(() => {
     logEvent("screen_view", {
       firebase_screen: "sign_up_store_info",
@@ -43,7 +56,7 @@ function StoreInfo() {
     isError = false,
     error,
   } = usePostSignUp();
-  const [isChecked, setIsChecked] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -57,13 +70,14 @@ function StoreInfo() {
       reason: "",
     },
   });
+
   const formValue = watch();
 
   useEffect(() => {
     setTimeout(() => {
       setFocus("name");
     }, 1000);
-  }, []);
+  }, [setFocus]);
 
   useEffect(() => {
     if (isChecked) {
@@ -74,7 +88,7 @@ function StoreInfo() {
     setTimeout(() => {
       setFocus("reason");
     }, 10);
-  }, [isChecked]);
+  }, [isChecked, reset, setFocus]);
 
   const browserPreventEvent = () => {
     history.pushState(null, "", location.href);
@@ -82,16 +96,16 @@ function StoreInfo() {
   };
 
   useEffect(() => {
-    history.pushState(null, "", location.href);
-    window.addEventListener("popstate", () => {
-      browserPreventEvent();
-    });
+    if (typeof window !== "undefined") {
+      history.pushState(null, "", location.href);
+      window.addEventListener("popstate", browserPreventEvent);
+    }
     return () => {
-      window.removeEventListener("popstate", () => {
-        browserPreventEvent();
-      });
+      if (typeof window !== "undefined") {
+        window.removeEventListener("popstate", browserPreventEvent);
+      }
     };
-  }, []);
+  }, [browserPreventEvent]);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     postSignUp({
@@ -106,6 +120,7 @@ function StoreInfo() {
       btn_position: "top",
     });
   };
+
   const formProps = {
     component: "form",
     noValidate: true,
@@ -118,7 +133,6 @@ function StoreInfo() {
     id: "filled-adminCode",
     type: "text",
     helperText: errors?.name && errors?.name.message,
-
     error: Boolean(errors?.name) || isError,
     variant: "filled",
     label: "매장명",
@@ -140,12 +154,15 @@ function StoreInfo() {
     style: { marginTop: "26px" },
     value: formValue.reason,
   };
+
   const checkBoxProps = {
     label: "매장명이 없습니다.",
     checked: isChecked,
     onChange: () => {
       setIsChecked(!isChecked);
-      window.scrollTo(0, document.body.scrollHeight);
+      if (typeof window !== "undefined" && typeof document !== "undefined") {
+        window.scrollTo(0, document.body.scrollHeight);
+      }
     },
     onClick: () => {
       logEvent("btn_click", {

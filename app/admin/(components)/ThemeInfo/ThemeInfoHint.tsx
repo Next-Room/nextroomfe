@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import { useGetHintList } from "@/queries/getHintList";
 import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
-import HintDialog from "@/components/common/Hint-Dialog-new/Dialog";
+import HintDialog from "@/components/common/Dialog-new/Hint-Dialog-new/Dialog";
 import {
   SelectedHintType,
   useSelectedHint,

@@ -5,13 +5,12 @@ import Image from "next/image";
 import useClickOutside from "@/hooks/useClickOutside";
 import { xProps } from "@/admin/(consts)/sidebar";
 import useModal from "@/hooks/useModal";
-import DialogBody from "@/components/common/Hint-Dialog-new/DialogBody";
+import DialogBody from "@/components/common/Dialog-new/Hint-Dialog-new/DialogBody";
 import "@/components/common/Dialog-new/dialog.sass";
 import { useDeleteHint } from "@/mutations/deleteHint";
 import { useSelectedHint } from "@/components/atoms/selectedHint.atom";
 import { useDrawerState } from "@/components/atoms/drawer.atom";
-
-import ModalPortal from "./ModalPortal";
+import ModalPortal from "@/components/common/Dialog-new/ModalPortal";
 
 interface DialogProps {
   type?: string | "";

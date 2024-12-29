@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -14,7 +14,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const isWebView = /APP_NEXTROOM_ANDROID/.test(navigator.userAgent); // 웹뷰에서 실행 중인지 여부 확인
+  const [isWebView, setIsWebView] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const { userAgent } = window.navigator;
+      const mwebviewRegex = /APP_NEXTROOM_ANDROID/i;
+      setIsWebView(mwebviewRegex.test(userAgent));
+    }
+  }, []);
   const router = useRouter();
   const pathName = getCookie();
 

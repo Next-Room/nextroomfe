@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
 
 import { useSnackBarWrite } from "@/components/atoms/snackBar.atom";
@@ -31,13 +31,14 @@ export const postLogin = async (data: Request) => {
     URL_PATH,
     data
   );
-
   return res.data;
 };
 
 export const usePostLogin = (configOptions?: MutationConfigOptions) => {
   const setIsLoggedIn = useIsLoggedInWrite();
   const setSnackBar = useSnackBarWrite();
+  const queryClient = useQueryClient();
+
   const info = useMutation<Response, AxiosError<ApiError>, Request, void>({
     mutationKey: MUTATION_KEY,
     mutationFn: (req) => postLogin(req),
@@ -54,10 +55,9 @@ export const usePostLogin = (configOptions?: MutationConfigOptions) => {
           accessTokenExpiresIn: data.accessTokenExpiresIn,
         });
         setIsLoggedIn(true);
+
+        queryClient.invalidateQueries({ queryKey: ["/v1/theme"] });
       }
-    },
-    onSettled: () => {
-      //   console.log("항상 실행");
     },
     onError: (error) => {
       setSnackBar({

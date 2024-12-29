@@ -21,8 +21,7 @@ export type Themes = Theme[];
 type Response = ApiResponse<Themes>;
 
 const URL_PATH = `/v1/theme`;
-export const QUERY_KEY = [URL_PATH];
-// TODO - 유저 id를 키에 추가해야 함
+export const QUERY_KEY = [URL_PATH]; // TODO - 유저 id를 키에 추가해야 함
 
 export const getThemeList = async (config?: AxiosRequestConfig) => {
   const res = await apiClient.get<Request, AxiosResponse<Response>>(URL_PATH, {
@@ -59,6 +58,7 @@ export const useGetThemeList = (configOptions?: QueryConfigOptions) => {
         }
       } else setSelectedThemeId(0);
     },
+
     onError: (error: AxiosError) => {
       setSnackBar({
         isOpen: true,
@@ -67,5 +67,10 @@ export const useGetThemeList = (configOptions?: QueryConfigOptions) => {
     },
   });
 
-  return info;
+  return {
+    ...info,
+    isInitialLoading: info.isLoading,
+    isRefetching: info.isFetching && !info.isLoading,
+    isLoading: info.isLoading || info.isFetching,
+  };
 };

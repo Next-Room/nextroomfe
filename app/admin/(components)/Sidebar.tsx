@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import classNames from "classnames";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import HintDialog from "@/components/common/Hint-Dialog-new/Dialog";
+import HintDialog from "@/components/common/Dialog-new/Hint-Dialog-new/Dialog";
 import {
   logoProps,
   plusDisableProps,
@@ -13,11 +13,9 @@ import {
 import {
   getSelectedThemeId,
   getStatus,
-  removeAccessToken,
   removeThemeId,
 } from "@/utils/storageUtil";
 import { useSelectedThemeReset } from "@/components/atoms/selectedTheme.atom";
-import { useIsLoggedInWrite } from "@/components/atoms/account.atom";
 import { useDrawerState } from "@/components/atoms/drawer.atom";
 import useModal from "@/hooks/useModal";
 
@@ -39,7 +37,7 @@ interface Props {
 export default function Sidebar(props: Props) {
   const router = useRouter();
   const resetSelectedTheme = useSelectedThemeReset();
-  // const setIsLoggedIn = useIsLoggedInWrite();
+
   const [drawer, setDrawer] = useDrawerState();
   const { open } = useModal();
 
@@ -58,6 +56,13 @@ export default function Sidebar(props: Props) {
   //   removeAccessToken();
   //   setIsLoggedIn(false);
   // };
+  useEffect(() => {
+    if (selectedThemeId && selectedThemeId !== "0")
+      router.push(
+        `/admin?themeId=${encodeURIComponent(selectedThemeId)}
+      `
+      );
+  }, [selectedThemeId]);
 
   const navigateToNewTheme = () => {
     resetSelectedTheme();
@@ -111,7 +116,7 @@ export default function Sidebar(props: Props) {
               <button
                 type="button"
                 className={classNames("sidebar__theme-button", {
-                  selected: selectedThemeId === theme.id?.toString() && params,
+                  selected: selectedThemeId === theme.id.toString(),
                 })}
                 onClick={() => handleSelectTheme(theme)}
               >
