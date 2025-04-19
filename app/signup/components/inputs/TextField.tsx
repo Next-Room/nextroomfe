@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-import "../styles/textfield.modules.sass";
+import "../../styles/textfield.modules.sass";
 import useClickOutside from "@/(shared)/hooks/useClickOutside";
 
-import { TextFieldPropsType } from "../types/SignUp";
+import { TextFieldPropsType } from "../../types/SignUp";
 
 export const SignUpTextField = (props: TextFieldPropsType) => {
   const {

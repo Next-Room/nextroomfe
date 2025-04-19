@@ -1,9 +1,10 @@
+"use client";
 import { useRef, useEffect } from "react";
 
 import { useSignUpValue } from "@/(shared)/atoms/signup.atom";
 import { usePostVerification } from "@/signup/apis/postVerification";
 
-import { CodeInputPropsType } from "../types/SignUp";
+import { CodeInputPropsType } from "../../types/SignUp";
 
 export const CodeInput = (props: CodeInputPropsType) => {
   const { disabled, numbers, setNumbers } = props;

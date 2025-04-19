@@ -1,12 +1,12 @@
 "use client";
 
-import "../styles/dropdown.modules.sass";
+import "../../styles/dropdown.modules.sass";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
 import useClickOutside from "@/(shared)/hooks/useClickOutside";
 
-import { DropDownPropsType } from "../types/SignUp";
+import { DropDownPropsType } from "../../types/SignUp";
 
 export const SignUpDropDownField = (props: DropDownPropsType) => {
   const { label, selectedText, options, setValue, require } = props;

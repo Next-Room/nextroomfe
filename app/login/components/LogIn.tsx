@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { SignUpTextField } from "@/signup/components/SignUpTextField";
+import { SignUpTextField } from "@/signup/components/inputs/TextField";
 import { handleClickGoogle } from "@/(shared)/auth/hooks/useAuth";
 
 import styles from "../styles/login.module.sass";
