@@ -8,6 +8,7 @@ import RequireAuth from "@/(shared)/auth/helpers/RequireAuth";
 
 import Clarity from "./(shared)/utils/Clarity";
 import Analytics from "./(shared)/utils/Analytics";
+import Loader from "./(shared)/components/Loader/Loader";
 
 export const metadata: Metadata = {
   title: "넥스트룸 (NEXT ROOM) | 방탈출 힌트폰 서비스",
@@ -25,7 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">
       <body>
-        <Suspense>
+        <Suspense fallback={<Loader />}>
           <Analytics />
           <Clarity />
         </Suspense>

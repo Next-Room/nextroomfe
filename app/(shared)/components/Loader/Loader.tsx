@@ -1,3 +1,5 @@
+"use client";
+
 import Lottie from "react-lottie-player";
 
 import loaderJson from "../../../../public/lottie/loader.json";
