@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
 import { useSignUpValue } from "@/(shared)/atoms/signup.atom";
 import { getCookie } from "@/(shared)/auth/helpers/cookie";
 import { removeAccessToken } from "@/(shared)/auth/storageUtil";
+import { useEffect, useState } from "react";
 
 const HeaderLayoutComponent = () => {
   const [isWebView, setIsWebView] = useState(false);
