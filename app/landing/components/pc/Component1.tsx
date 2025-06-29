@@ -1,4 +1,5 @@
 import { forwardRef, useEffect } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -58,6 +59,13 @@ const Component1 = forwardRef<HTMLDivElement>((_, ref) => {
     });
   };
 
+  const imgProps = {
+    src: "/images/landing/main_image.png",
+    alt: "NEXT ROOM",
+    width: 558,
+    height: 412,
+  };
+
   return (
     <div ref={ref}>
       <motion.div
@@ -80,17 +88,7 @@ const Component1 = forwardRef<HTMLDivElement>((_, ref) => {
             지금 바로 시작하기
           </button>
         </div>
-        <video
-          width={558}
-          height={412}
-          controls
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src="/videos/0507_홍보영상.MP4" type="video/mp4" />
-        </video>
+        <Image {...imgProps} />
       </motion.div>
     </div>
   );
