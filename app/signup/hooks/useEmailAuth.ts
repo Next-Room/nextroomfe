@@ -61,7 +61,6 @@ const useEmailAuth = () => {
     postVerification({ code: data.code, email: signUpState.email });
     logEvent("btn_click", {
       btn_name: "sign_up_email_code_btn",
-      btn_position: "top",
     });
   };
 
