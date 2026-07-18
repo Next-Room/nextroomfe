@@ -45,7 +45,7 @@ const useAuth = () => {
   };
 
   const SignUpLinkProps = {
-    title: isSignIn ? "관리자 페이지로 가기" : "무료로 시작하기",
+    title: isSignIn ? "관리자 페이지로 가기" : "시작하기",
     onClick: handleSignUpBtn,
   };
 
