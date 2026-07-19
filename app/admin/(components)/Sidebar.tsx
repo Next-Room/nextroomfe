@@ -183,13 +183,6 @@ export default function Sidebar(props: Props) {
           </div>
         )}
       </div>
-
-      <div className="sidebar__bottom">
-        <p className="sidebar__admin-code-title">관리자 코드</p>
-        <p className="sidebar__admin-code-value">
-          {loginInfo.adminCode?.replaceAll(`"`, "")}
-        </p>
-      </div>
     </div>
   );
 }
