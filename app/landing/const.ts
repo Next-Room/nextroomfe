@@ -15,14 +15,14 @@ export const reviews = [
   },
   {
     idx: 3,
-    title: "“무료라서 시작했는데, 계속 쓰게 됐어요”",
+    title: "“손님, 직원 모두에게 사용자 친화적인 서비스입니다.”",
     content:
       "굉장히 유저프렌들리하고 필요한 기능만 알차게 담겨 있어 운영에 많은 도움이 되었습니다.",
     writer: "– 신사 시그널헌터 사장님",
   },
   {
     idx: 3,
-    title: "“무료인데도 어플 퀄리티가 너무 좋습니다”",
+    title: "“어플 퀄리티가 너무 좋습니다”",
     content:
       "개선점 업데이트 등 고객 피드백도 빠르고 서비스도 깔끔해서 몇 년째 잘 사용하고 있습니다.",
     writer: "– 홍대 덤앤더머 사장님",
@@ -66,3 +66,117 @@ export const swipeBoxVariants = {
     },
   },
 };
+
+export const compContents = [
+  {
+    category: "비용",
+    outsourcing: "초기 제작비 <b>300~800만 원</b>",
+    nextroom: "<b>월 29,900원</b> · 10년을 써도 구독이 훨씬 저렴",
+  },
+  {
+    category: "도입 기간",
+    outsourcing: "제작에 수개월 소요",
+    nextroom: "가입 즉시 <b>바로 사용 가능</b>",
+  },
+  {
+    category: "제작자",
+    outsourcing: "방탈출 이해도가 낮은 외부 개발자",
+    nextroom: "방탈출 업계 <b>4년 경력 개발자</b>가 직접 개발",
+  },
+  {
+    category: "기능",
+    outsourcing: "타이머, 힌트 정도의 기본 기능",
+    nextroom:
+      "타이머, 힌트, 메모, 배경화면 커스텀, 사진 첨부, 오프라인 모드, 진행 상황 복구 시스템 등",
+  },
+  {
+    category: "A/S 지원",
+    outsourcing: "제작 완료 시 1회성 지원에 그침",
+    nextroom: "<b>구독 기간 내내</b> 지속 지원",
+  },
+];
+
+export const qnas = [
+  // {
+  //   idx: 0,
+  //   question: "넥스트룸은 무료 서비스인가요?",
+  //   answer: `누구나 힌트폰의 기본 기능을 무료로 사용할 수 있습니다.
+  //             <br />
+  //             다만 일부 기능은 유료로 제공하고 있어요.
+  //             <br />
+  //             <br />
+  //             현재 얼리버드 이벤트 기간으로, 49% 할인된 가격으로 제공하고
+  //             있습니다.
+  //             <br />
+  //             지금 구독하신 분들은 평생 동결 가격으로 넥스트룸을 사용하실 수
+  //             있어요!`,
+  // },
+  // {
+  //   idx: 1,
+  //   question: "구독 시 어떤 혜택이 있나요?",
+  //   answer: `손님들에게 보여줄 힌트에 사진을 첨부해 더 자세한 설명을 제공할 수
+  //             있어요.
+  //             <br />
+  //             타이머 화면의 배경을 테마 분위기에 맞게 커스텀하는 기능도
+  //             제공해요.
+  //             <br />더 자세한 내용은{" "}
+  //             <Link
+  //               href="https://nextroom-official.notion.site/38c311947d1d80ffa8d2e13f6c31f8d5?pvs=74"
+  //               target="_blank"
+  //               rel="noopener noreferrer"
+  //             >
+  //               <span className="text-white">여기</span>
+  //             </Link>
+  //             에서 확인해 보세요.`,
+  // },
+  {
+    idx: 1,
+    question: "비용은 얼마인가요?",
+    answer: `현재 얼리버드 이벤트 기간으로, 비용은 월 29,900원입니다.
+지금 구독하신 분들은 평생 동결 가격으로 넥스트룸을 사용하실 수 있어요!
+결제는 앱에서 가능합니다.`,
+  },
+  {
+    idx: 2,
+    question:
+      "타이머 화면에서 게임을 종료하고 새로운 게임을 시작하는 방법이 궁금해요.",
+    answer: `타이머 화면의 좌측 상단에 희미하게 화살표가 있어요.
+화살표를 1초 이상 꾹 누르면 타이머 화면에서 나갈 수 있습니다.
+손님들이 실수로 게임을 종료하지 못하도록 설정해둔 소소한 장치에요.`,
+  },
+  {
+    idx: 3,
+    question: "비밀번호를 잊어버렸어요.",
+    answer: `현재 넥스트룸은 비밀번호 찾기/변경 기능을 제공하지 않습니다.
+만약 비밀번호를 잊으셨다면 공식계정(nextroom.official@gmail.com)으로 연락 주세요.`,
+  },
+  {
+    idx: 4,
+    question: "앱 사용중에 문제가 생겼어요.",
+    answer: `일시적으로 발생하는 문제가 아니라면 다음 연락망을 통해 제보해주세요.
+■ 공식 계정: nextroom.official@gmail.com
+<a href="https://www.instagram.com/team_nextroom/" target="_blank" rel="noopener noreferrer">■ 인스타그램: https://www.instagram.com/team_nextroom/</a>
+■ 연락처: 010-7416-9874
+<br />
+<img className="pc-faq-img" src="/images/landing/error-message.png" alt="error-message" width=240 />
+에러 팝업의 오류 내용 보기 버튼을 클릭하여 같이 제보해주시면
+더욱 빠른 조치가 가능합니다.`,
+  },
+  {
+    idx: 5,
+    question: "힌트 코드에는 숫자만 사용할 수 있나요?",
+    answer: `넥스트룸은 숫자만 지원하고 있습니다.
+손님들이 힌트 코드를 입력하는 데 시간을 지체하지 않기를 바라는 마음에 숫자만 지원하고 있어요.`,
+  },
+  {
+    idx: 6,
+    question: "안드로이드 폰에서만 사용 가능한가요?",
+    answer: `안드로이드 기기라면 폰, 태블릿 관계없이 사용 가능합니다. iOS는 지원하지 않습니다.`,
+  },
+  {
+    idx: 7,
+    question: "넥스트룸을 사용하기 위한 최소 사양을 알고 싶어요.",
+    answer: `최소 안드로이드 OS 버전이 7.0 이상이어야 다운로드 및 사용이 가능합니다.
+원활한 사용을 위해 램은 최소 3GB 이상을 권장드립니다.`,
+  },
+];

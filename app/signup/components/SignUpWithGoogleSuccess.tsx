@@ -69,7 +69,7 @@ const SignUpWithGoogleSuccessComponent = () => {
                 }}
               >
                 <Link
-                  href="https://held-notebook-420.notion.site/134ed57b9c574733b31feab0ea5c36a5"
+                  href="https://nextroom-official.notion.site/38c311947d1d806cb862fe2510c3c6f4?pvs=74"
                   target="_blank"
                 >
                   가이드 보기

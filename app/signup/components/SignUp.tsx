@@ -23,7 +23,7 @@ const SignUpComponent = () => {
       <p className="signup-sub-title">
         회원가입이 필요한 서비스이며,
         <Link
-          href="https://held-notebook-420.notion.site/d7bea4318d754b61999e9cb6179a2f70?pvs=4"
+          href="https://nextroom-official.notion.site/38c311947d1d80618e61dfae7ad5d42b"
           target="_blank"
         >
           개인정보처리방침

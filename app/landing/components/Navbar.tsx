@@ -24,7 +24,7 @@ function NavbarComponent({
           <div className="logo-nav">
             <div className="logo-nav-item">
               <Link
-                href="https://held-notebook-420.notion.site/134ed57b9c574733b31feab0ea5c36a5"
+                href="https://nextroom-official.notion.site/38c311947d1d806cb862fe2510c3c6f4?pvs=74"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -33,7 +33,7 @@ function NavbarComponent({
             </div>
             <div className="logo-nav-item">
               <Link
-                href="https://sponge-wood-68d.notion.site/1d3febdc0ad180b0ab56c23b527563f8"
+                href="https://nextroom-official.notion.site/38c311947d1d8042b4ecdff3e4a5148f"
                 target="_blank"
                 rel="noopener noreferrer"
               >

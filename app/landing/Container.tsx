@@ -15,6 +15,7 @@ import FooterComponent from "./components/Footer";
 import NavbarComponent from "./components/Navbar";
 import Component2Mobile from "./components/mobile/Component2Mobile";
 import Component4Mobile from "./components/mobile/Component4Mobile";
+import ComparePlanComponent from "./components/pc/ComparePlanComponent";
 
 function LandingPage() {
   const {
@@ -48,6 +49,7 @@ function LandingPage() {
               <Component2 />
               <Component3 />
               <Component4 ref={component4Ref} />
+              <ComparePlanComponent />
               <Component5 />
               <Component6 ref={component6Ref} />
               {/* 조건부 렌더링을 통해 Btn 컴포넌트를 표시 */}
