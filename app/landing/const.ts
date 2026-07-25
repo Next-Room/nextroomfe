@@ -92,7 +92,7 @@ export const qnas = [
   //             제공해요.
   //             <br />더 자세한 내용은{" "}
   //             <Link
-  //               href="https://www.notion.so/107febdc0ad180f09f68fc47e1f4fde2?pvs=21"
+  //               href="https://nextroom-official.notion.site/38c311947d1d80ffa8d2e13f6c31f8d5?pvs=74"
   //               target="_blank"
   //               rel="noopener noreferrer"
   //             >

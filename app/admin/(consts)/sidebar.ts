@@ -34,10 +34,10 @@ export const deleteProps = {
 };
 
 export const subscribeLinkURL =
-  "https://sponge-wood-68d.notion.site/ec2a28c470094769bc787acb74760da5";
+  "https://nextroom-official.notion.site/38c311947d1d80898636c03859681c70";
 
 export const timerImageLinkURL =
-  "https://www.notion.so/186febdc0ad180248728f1cfaf9bee20?pvs=4";
+  "https://nextroom-official.notion.site/38c311947d1d80e8b55fe157536f9c30";
 
 export const smallXProps = {
   src: "/images/svg/icon_X.svg",

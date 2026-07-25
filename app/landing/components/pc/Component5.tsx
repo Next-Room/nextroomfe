@@ -104,7 +104,7 @@ export default function Component5() {
               className="pc-plan-btn"
               onClick={() =>
                 window.open(
-                  "https://sponge-wood-68d.notion.site/107febdc0ad180f09f68fc47e1f4fde2",
+                  "https://nextroom-official.notion.site/38c311947d1d80ffa8d2e13f6c31f8d5", // 넥스트룸 유료 기능 소개 페이지
                   "_blank"
                 )
               }
