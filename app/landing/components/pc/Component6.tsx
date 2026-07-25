@@ -2,7 +2,7 @@ import { useAnimation, motion } from "framer-motion";
 import { forwardRef, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-import { qnas } from "@/landing/const";
+import { qnas } from "../../const";
 
 const Component6 = forwardRef<HTMLDivElement>((_, divref) => {
   const controls = useAnimation();

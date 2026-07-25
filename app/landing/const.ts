@@ -67,6 +67,35 @@ export const swipeBoxVariants = {
   },
 };
 
+export const compContents = [
+  {
+    category: "비용",
+    outsourcing: "초기 제작비 <b>300~800만 원</b>",
+    nextroom: "<b>월 29,900원</b> · 10년을 써도 구독이 훨씬 저렴",
+  },
+  {
+    category: "도입 기간",
+    outsourcing: "제작에 수개월 소요",
+    nextroom: "가입 즉시 <b>바로 사용 가능</b>",
+  },
+  {
+    category: "제작자",
+    outsourcing: "방탈출 이해도가 낮은 외부 개발자",
+    nextroom: "방탈출 업계 <b>4년 경력 개발자</b>가 직접 개발",
+  },
+  {
+    category: "기능",
+    outsourcing: "타이머, 힌트 정도의 기본 기능",
+    nextroom:
+      "타이머, 힌트, 메모, 배경화면 커스텀, 사진 첨부, 오프라인 모드, 진행 상황 복구 시스템 등",
+  },
+  {
+    category: "A/S 지원",
+    outsourcing: "제작 완료 시 1회성 지원에 그침",
+    nextroom: "<b>구독 기간 내내</b> 지속 지원",
+  },
+];
+
 export const qnas = [
   // {
   //   idx: 0,

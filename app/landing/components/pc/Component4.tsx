@@ -2,7 +2,7 @@ import { useAnimation, motion } from "framer-motion";
 import { forwardRef, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-import { logos, reviews, swipeBoxVariants } from "@/landing/const";
+import { logos, reviews, swipeBoxVariants } from "../../const";
 
 const Component4 = forwardRef<HTMLDivElement>((_, divref) => {
   const controls = useAnimation();
