@@ -163,3 +163,7 @@ a:hover {
 	cursor: pointer;
 	color: inherit
 }
+
+#ch-plugin-script-iframe {
+	bottom: 24px;
+}
