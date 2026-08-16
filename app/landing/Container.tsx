@@ -38,7 +38,6 @@ function LandingPage() {
               <Component2Mobile />
               <Component3 />
               <Component4Mobile ref={component4Ref} />
-              <Component5 />
               <Component6 ref={component6Ref} />
               {showBtn && <MobileBtn />}
               <FooterComponent />
@@ -50,7 +49,6 @@ function LandingPage() {
               <Component3 />
               <Component4 ref={component4Ref} />
               <ComparePlanComponent />
-              <Component5 />
               <Component6 ref={component6Ref} />
               {/* 조건부 렌더링을 통해 Btn 컴포넌트를 표시 */}
               {/* buttonProps를 전달하고 ref를 설정하여 DOM 요소를 참조합니다. */}
