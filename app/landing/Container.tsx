@@ -38,6 +38,7 @@ function LandingPage() {
               <Component2Mobile />
               <Component3 />
               <Component4Mobile ref={component4Ref} />
+              <ComparePlanComponent />
               <Component6 ref={component6Ref} />
               {showBtn && <MobileBtn />}
               <FooterComponent />
