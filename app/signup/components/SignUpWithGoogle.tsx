@@ -93,6 +93,7 @@ const SignUpWithGoogleComponent = ({ query }: { query: string }) => {
             <span>모두 동의합니다.</span>
           </label>
         </div>
+
         <label
           className="signup-check-box-label"
           aria-label={"서비스 이용약관"}
@@ -104,10 +105,17 @@ const SignUpWithGoogleComponent = ({ query }: { query: string }) => {
           />
           <span>
             <Link
-              href="https://nextroom-official.notion.site/38c311947d1d80618e61dfae7ad5d42b?pvs=74"
+              href="https://nextroom-official.notion.site/3be311947d1d8070b4c0dccd390912bf"
               target="_blank"
             >
               <u>서비스 이용약관</u>
+            </Link>{" "}
+            및{" "}
+            <Link
+              href="https://nextroom-official.notion.site/38c311947d1d80618e61dfae7ad5d42b?pvs=74"
+              target="_blank"
+            >
+              <u>개인정보 처리방침</u>
             </Link>{" "}
             동의 <span className="signup-google-require">(필수)</span>
           </span>
