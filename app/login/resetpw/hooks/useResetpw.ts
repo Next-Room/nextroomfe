@@ -9,7 +9,10 @@ import {
   SIGN_UP_PASSWORD,
   SIGN_UP_PASSWORD_CONFIRM,
 } from "../../../signup/consts/signUp";
-import { PasswordValueType, TextFieldPropsType } from "../types/Resetpw";
+import {
+  PasswordValueType,
+  TextFieldPropsType,
+} from "../../../signup/types/SignUp";
 
 const useResetpw = () => {
   const router = useRouter();

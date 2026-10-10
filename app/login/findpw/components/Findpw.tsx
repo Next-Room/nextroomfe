@@ -1,7 +1,7 @@
-import { FIND_PW_BTN_TEXT } from "../consts/findpw";
+import "../styles/findpw.modules.sass";
+import { SIGN_UP_BTN_TEXT } from "../../../signup/consts/signUp";
+import { SignUpTextField } from "../../../signup/components/SignUpTextField";
 import useFindpw from "../hooks/useFindpw";
-
-import { FindpwTextField } from "./FindpwTextField";
 
 const FindpwComponent = () => {
   const {
@@ -26,13 +26,13 @@ const FindpwComponent = () => {
         넥스트룸 비밀번호 찾기
       </p>
       <form {...formProps}>
-        <FindpwTextField {...textFieldInfoProps} />
+        <SignUpTextField {...textFieldInfoProps} />
         <button
           className="findpw-btn"
           type="submit"
           disabled={isSubmitDisabled}
         >
-          {FIND_PW_BTN_TEXT}
+          {SIGN_UP_BTN_TEXT}
         </button>
       </form>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import "./styles/resetpw.modules.sass";
+import "../../signup/styles/signup.modules.sass";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

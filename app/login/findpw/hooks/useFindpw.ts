@@ -6,13 +6,16 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import useCheckSignIn from "@/(shared)/auth/hooks/useCheckSignIn";
 import useAnalytics from "@/(shared)/hooks/useAnalytics";
 
-import { FindpwValueType, TextFieldPropsType } from "../types/Findpw";
+import {
+  SignUpValueType,
+  TextFieldPropsType,
+} from "../../../signup/types/SignUp";
 import {
   FIND_PW_EMAIL,
   FIND_PW_PLACEHOLDER,
   FIND_PW_SUBTEXT,
   RESEND_INTERVAL_MS,
-} from "../consts/findpw";
+} from "../../../signup/consts/signUp";
 
 import { useCountdown } from "./useCountdown";
 
@@ -30,7 +33,7 @@ const useFindpw = () => {
     setFocus,
     formState: { errors, isValid },
     watch,
-  } = useForm<FindpwValueType>({
+  } = useForm<SignUpValueType>({
     mode: "onChange",
     defaultValues: { email: "" },
   });
@@ -50,7 +53,7 @@ const useFindpw = () => {
     });
   }, [logEvent]);
 
-  const onSubmit: SubmitHandler<FindpwValueType> = async (data) => {
+  const onSubmit: SubmitHandler<SignUpValueType> = async (data) => {
     if (isLoading || (isSent && isRunning)) return;
     setIsLoading(true);
 
