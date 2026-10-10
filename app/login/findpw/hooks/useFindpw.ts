@@ -27,6 +27,7 @@ const useFindpw = () => {
   const {
     register,
     handleSubmit,
+    setFocus,
     formState: { errors, isValid },
     watch,
   } = useForm<FindpwValueType>({
@@ -34,6 +35,10 @@ const useFindpw = () => {
     defaultValues: { email: "" },
   });
   useCheckSignIn();
+
+  useEffect(() => {
+    setFocus("email");
+  }, [setFocus]);
 
   const emailValue = watch("email");
   const { logEvent } = useAnalytics();
@@ -51,7 +56,7 @@ const useFindpw = () => {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
-      console.log("Mock 비밀번호 재설정 메일 발송:", data.email);
+      console.error("Mock 비밀번호 재설정 메일 발송:", data.email);
       setIsSent(true);
       start();
     } catch (error) {

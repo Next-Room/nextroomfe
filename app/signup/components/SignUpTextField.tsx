@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import "../styles/textfield.modules.sass";
 import useClickOutside from "@/(shared)/hooks/useClickOutside";
@@ -20,18 +20,9 @@ export const SignUpTextField = (props: TextFieldPropsType) => {
     className,
     require,
   } = props;
-  const inputRef = useRef<HTMLLabelElement>(null);
   const divRef = useRef<HTMLDivElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (inputRef.current) {
-        inputRef.current.click();
-      }
-    }, 1000);
-  }, []);
 
   useClickOutside(divRef, () => {
     setIsFocused(false);
@@ -48,11 +39,9 @@ export const SignUpTextField = (props: TextFieldPropsType) => {
         ref={divRef}
       >
         <label
-          htmlFor="id"
+          htmlFor={`textfield-input-${id}`}
           className="textfield-label text_label"
-          id="id_old_label"
           aria-hidden="true"
-          ref={inputRef}
           data-error={error}
         >
           {label}
@@ -68,6 +57,11 @@ export const SignUpTextField = (props: TextFieldPropsType) => {
           aria-label="아이디"
           disabled={disabled}
           {...inputProps}
+          onFocus={() => setIsFocused(true)}
+          onBlur={(e) => {
+            inputProps?.onBlur?.(e);
+            setIsFocused(false);
+          }}
         />
       </div>
       <p className="textfield-supporting-text" data-error={error}>

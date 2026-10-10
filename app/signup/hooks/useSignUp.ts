@@ -55,10 +55,8 @@ const useSignUp = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setFocus("email");
-    }, 1000);
-  }, []);
+    setFocus("email");
+  }, [setFocus]);
 
   useEffect(() => {
     if (errors.email) {

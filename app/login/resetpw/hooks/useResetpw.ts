@@ -42,10 +42,8 @@ const useResetpw = () => {
   }, [logEvent]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setFocus("password");
-    }, 1000);
-  }, []);
+    setFocus("password");
+  }, [setFocus]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
