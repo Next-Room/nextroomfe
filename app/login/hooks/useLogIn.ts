@@ -96,6 +96,10 @@ const useLogIn = () => {
     value: formValue.password,
   };
 
+  const handleClickFindpwBtn = () => {
+    router.push("/login/findpw");
+  };
+
   const handleClickSignUpBtn = () => {
     setCookie("/login");
     router.push("/signup");
@@ -109,6 +113,7 @@ const useLogIn = () => {
     passwordProps,
     isLoading,
     errorMessage,
+    handleClickFindpwBtn,
     handleClickSignUpBtn,
     isValid,
   };

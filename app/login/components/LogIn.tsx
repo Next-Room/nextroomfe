@@ -18,6 +18,7 @@ const LogInComponent = () => {
     passwordProps,
     isLoading,
     errorMessage,
+    handleClickFindpwBtn,
     handleClickSignUpBtn,
     isValid,
   } = useLogIn();
@@ -44,6 +45,12 @@ const LogInComponent = () => {
           <button className={styles.loginBtn} type="submit" disabled={!isValid}>
             {LOGIN}
           </button>
+          <div className={styles.loginFindpwBox}>
+            비밀번호를 잊으셨나요?
+            <button type="button" onClick={handleClickFindpwBtn}>
+              비밀번호 찾기
+            </button>
+          </div>
         </div>
       </form>
       <div className={styles.loginSignupContainer}>
