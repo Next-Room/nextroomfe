@@ -22,6 +22,7 @@ function RequireAuth({ children }: RequireAuthProps) {
       "/signup/success",
       "/login/findpw",
       "/login/resetpw",
+      "/login/resetpw/success",
     ],
     []
   );
