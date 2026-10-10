@@ -31,16 +31,16 @@ export default function RootLayout({
   if (isWebView) {
     return (
       <>
-        <div className="resetpw-wrapper" />
+        <div className="signup-wrapper" />
         {children}
       </>
     );
   }
   return (
     <>
-      <div className="resetpw-wrapper">
+      <div className="signup-wrapper">
         <button
-          className="resetpw-header"
+          className="signup-header"
           onClick={() => {
             router.back();
           }}

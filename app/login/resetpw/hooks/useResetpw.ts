@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -19,7 +19,16 @@ const useResetpw = () => {
   const searchParams = useSearchParams();
 
   const token = searchParams.get("token");
+  const [isExpired, setIsExpired] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const expiredRef = useRef(false);
+  const expiredToken = () => {
+    if (expiredRef.current) return;
+
+    expiredRef.current = true;
+    setIsExpired(true);
+  };
 
   const {
     register,
@@ -130,6 +139,7 @@ const useResetpw = () => {
     passwordConfirmProps,
     isValid,
     isLoading,
+    isExpired,
   };
 };
 
