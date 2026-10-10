@@ -16,7 +16,13 @@ function RequireAuth({ children }: RequireAuthProps) {
   const router = useRouter();
   const pathname = usePathname();
   const allowUnauthPaths = useMemo(
-    () => ["/", "/signup", "/signup/success", "/login/findpw"],
+    () => [
+      "/",
+      "/signup",
+      "/signup/success",
+      "/login/findpw",
+      "/login/resetpw",
+    ],
     []
   );
   const [isMobile, setIsMobile] = useState(false);
