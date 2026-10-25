@@ -13,7 +13,6 @@ import {
 import {
   FIND_PW_EMAIL,
   FIND_PW_PLACEHOLDER,
-  FIND_PW_SUBTEXT,
   RESEND_INTERVAL_MS,
 } from "../../../signup/consts/signUp";
 
@@ -78,8 +77,7 @@ const useFindpw = () => {
   const textFieldInfoProps: TextFieldPropsType = {
     id: "filled-adminCode",
     type: "text",
-    helperText: errors.email?.message ?? FIND_PW_SUBTEXT,
-    // errors?.email && errors?.email.message,
+    helperText: errors.email?.message,
     error: Boolean(errors?.email),
     variant: "filled",
     label: FIND_PW_EMAIL,
