@@ -1,3 +1,5 @@
+import { useRouter } from "next/navigation";
+
 import "../styles/findpw.modules.sass";
 import { SIGN_UP_BTN_TEXT } from "../../../signup/consts/signUp";
 import { SignUpTextField } from "../../../signup/components/SignUpTextField";
@@ -8,10 +10,11 @@ const FindpwComponent = () => {
     formProps,
     textFieldInfoProps,
     isSubmitDisabled,
-    isSent,
+    resultType,
     resendProps,
     remaining,
   } = useFindpw();
+  const router = useRouter();
 
   const formatTime = (sec: number) => {
     const minutes = Math.floor(sec / 60);
@@ -36,37 +39,76 @@ const FindpwComponent = () => {
         </button>
       </form>
 
-      {isSent && (
+      {resultType && (
         <div className="findpw-sent">
           <div className="findpw-sent-header">
-            <span className="findpw-sent-icon">✓</span>
+            <span className="findpw-sent-icon">
+              {resultType === "success" ? "✓" : "✕"}
+            </span>
 
             <div className="findpw-sent-content">
-              <strong>비밀번호 재설정 링크를 발송했습니다.</strong>
-              <p>메일함과 스팸함을 확인해 주세요.</p>
+              {resultType === "success" && (
+                <>
+                  <strong>비밀번호 재설정 링크를 발송했습니다.</strong>
+                  <p>메일함과 스팸함을 확인해 주세요.</p>
+                </>
+              )}
+              {resultType === "notFound" && (
+                <>
+                  <strong>가입되지 않은 이메일입니다.</strong>
+                  <p>
+                    해당 이메일로 가입된 계정이 없어
+                    <br />
+                    비밀번호 재설정 메일을 발송하지 않았습니다.
+                  </p>
+                </>
+              )}
+              {resultType === "google" && (
+                <>
+                  <strong>구글 계정으로 가입된 이메일입니다.</strong>
+                  <p>
+                    구글 계정의 비밀번호는 넥스트룸에서 변경할 수 없습니다.
+                    <br />
+                    구글 계정 설정에서 비밀번호를 변경해 주세요.
+                  </p>
+                </>
+              )}
             </div>
           </div>
 
-          <div className="findpw-resend">
-            <div className="findpw-resend-info">
-              <span>메일이 도착하지 않았나요?</span>
+          {resultType === "success" && (
+            <div className="findpw-resend">
+              <div className="findpw-resend-info">
+                <span>메일이 도착하지 않았나요?</span>
 
-              <span className="findpw-timer">
-                {remaining > 0
-                  ? `${formatTime(remaining)} 후 재발송 가능`
-                  : "재발송할 수 있습니다"}
-              </span>
+                <span className="findpw-timer">
+                  {remaining > 0
+                    ? `${formatTime(remaining)} 후 재발송 가능`
+                    : "재발송할 수 있습니다"}
+                </span>
+              </div>
+
+              <button
+                {...resendProps}
+                type="button"
+                className="findpw-resend-btn"
+                disabled={remaining > 0 || resendProps.disabled}
+              >
+                다시 보내기
+              </button>
             </div>
-
-            <button
-              {...resendProps}
-              type="button"
-              className="findpw-resend-btn"
-              disabled={remaining > 0 || resendProps.disabled}
-            >
-              다시 보내기
-            </button>
-          </div>
+          )}
+          {resultType === "notFound" && (
+            <div className="findpw-resend">
+              <button
+                type="button"
+                className="findpw-resend-btn"
+                onClick={() => router.push("/")}
+              >
+                메인으로 이동
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -66,9 +66,10 @@ const useResetpw = () => {
   };
 
   const onSubmit: SubmitHandler<PasswordValueType> = async (data) => {
-    if (isLoading) return;
+    if (isLoading || isExpired) return;
 
     setIsLoading(true);
+
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
       console.error("Mock 비밀번호 재설정:", data.password);
@@ -79,6 +80,11 @@ const useResetpw = () => {
       });
       router.replace("/login/resetpw/success");
     } catch (error) {
+      // 토큰만료 API 응답 받았을때
+      // if (error.response?.status === 410 || error.response?.data?.code==="TOKEN_EXPIRED") {
+      //   setIsExpired(true);
+      //   return
+      // }
       console.error("비밀번호 재설정 실패:", error);
     } finally {
       setIsLoading(false);

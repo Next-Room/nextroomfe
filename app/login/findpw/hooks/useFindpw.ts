@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import useCheckSignIn from "@/(shared)/auth/hooks/useCheckSignIn";
 import useAnalytics from "@/(shared)/hooks/useAnalytics";
+import { FindpwResultType } from "@/login/types/LogIn";
 
 import {
   SignUpValueType,
@@ -21,7 +22,8 @@ import { useCountdown } from "./useCountdown";
 const useFindpw = () => {
   // Mock API
   const [isLoading, setIsLoading] = useState(false);
-  const [isSent, setIsSent] = useState(false);
+  // const [isSent, setIsSent] = useState(false);
+  const [resultType, setResultType] = useState<FindpwResultType>(null);
 
   // 재발송 카운트다운
   const { remaining, isRunning, start } = useCountdown(RESEND_INTERVAL_MS);
@@ -53,14 +55,17 @@ const useFindpw = () => {
   }, [logEvent]);
 
   const onSubmit: SubmitHandler<SignUpValueType> = async (data) => {
-    if (isLoading || (isSent && isRunning)) return;
+    if (isLoading || (resultType === "success" && isRunning)) return;
     setIsLoading(true);
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
       console.error("Mock 비밀번호 재설정 메일 발송:", data.email);
-      setIsSent(true);
+      setResultType("success");
       start();
+      // 화면 테스트용
+      // setResultType("notFound");
+      // setResultType("google");
     } catch (error) {
       console.error("메일 발송 실패:", error);
     } finally {
@@ -97,15 +102,15 @@ const useFindpw = () => {
   const resendProps = {
     type: "button" as const,
     onClick: handleSubmit(onSubmit),
-    disabled: !isSent || isRunning || isLoading,
+    disabled: resultType !== "success" || isRunning || isLoading,
   };
 
   return {
     formProps,
     textFieldInfoProps,
-    isSubmitDisabled: !isValid || isLoading || isSent,
+    isSubmitDisabled: !isValid || isLoading || resultType === "success",
     isLoading,
-    isSent,
+    resultType,
     resendProps,
     remaining,
   };
