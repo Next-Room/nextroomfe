@@ -1,7 +1,5 @@
-import { useRouter } from "next/navigation";
-
 import "../styles/findpw.modules.sass";
-import { SIGN_UP_BTN_TEXT } from "../../../signup/consts/signUp";
+import { FIND_PW_BTN_TEXT } from "../../consts/logIn";
 import { SignUpTextField } from "../../../signup/components/SignUpTextField";
 import useFindpw from "../hooks/useFindpw";
 
@@ -10,11 +8,11 @@ const FindpwComponent = () => {
     formProps,
     textFieldInfoProps,
     isSubmitDisabled,
+    isLoading,
     resultType,
     resendProps,
     remaining,
   } = useFindpw();
-  const router = useRouter();
 
   const formatTime = (sec: number) => {
     const minutes = Math.floor(sec / 60);
@@ -35,15 +33,32 @@ const FindpwComponent = () => {
           type="submit"
           disabled={isSubmitDisabled}
         >
-          {SIGN_UP_BTN_TEXT}
+          {FIND_PW_BTN_TEXT}
         </button>
       </form>
 
-      {resultType && (
+      {!isLoading && resultType && (
         <div className="findpw-sent">
           <div className="findpw-sent-header">
-            <span className="findpw-sent-icon">
-              {resultType === "success" ? "✓" : "✕"}
+            <span
+              className={`findpw-sent-icon ${
+                resultType !== "success" ? "error" : ""
+              }`}
+            >
+              {resultType === "success" ? (
+                "✓"
+              ) : (
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                >
+                  <path d="M5 5L19 19M19 5L5 19" />
+                </svg>
+              )}
             </span>
 
             <div className="findpw-sent-content">
@@ -95,17 +110,6 @@ const FindpwComponent = () => {
                 disabled={remaining > 0 || resendProps.disabled}
               >
                 다시 보내기
-              </button>
-            </div>
-          )}
-          {resultType === "notFound" && (
-            <div className="findpw-resend">
-              <button
-                type="button"
-                className="findpw-resend-btn"
-                onClick={() => router.push("/")}
-              >
-                메인으로 이동
               </button>
             </div>
           )}

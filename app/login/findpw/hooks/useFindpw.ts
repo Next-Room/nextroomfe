@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import useCheckSignIn from "@/(shared)/auth/hooks/useCheckSignIn";
 import useAnalytics from "@/(shared)/hooks/useAnalytics";
 import { FindpwResultType } from "@/login/types/LogIn";
+import useResetPasswordRequest from "@/login/apis/postResetPwRequest";
 
 import {
   SignUpValueType,
@@ -20,10 +21,8 @@ import {
 import { useCountdown } from "./useCountdown";
 
 const useFindpw = () => {
-  // Mock API
-  const [isLoading, setIsLoading] = useState(false);
-  // const [isSent, setIsSent] = useState(false);
   const [resultType, setResultType] = useState<FindpwResultType>(null);
+  const { handleResetPasswordRequest, isLoading } = useResetPasswordRequest();
 
   // 재발송 카운트다운
   const { remaining, isRunning, start } = useCountdown(RESEND_INTERVAL_MS);
@@ -32,6 +31,8 @@ const useFindpw = () => {
     register,
     handleSubmit,
     setFocus,
+    setError,
+    clearErrors,
     formState: { errors, isValid },
     watch,
   } = useForm<SignUpValueType>({
@@ -56,20 +57,42 @@ const useFindpw = () => {
 
   const onSubmit: SubmitHandler<SignUpValueType> = async (data) => {
     if (isLoading || (resultType === "success" && isRunning)) return;
-    setIsLoading(true);
 
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      console.error("Mock 비밀번호 재설정 메일 발송:", data.email);
-      setResultType("success");
-      start();
-      // 화면 테스트용
-      // setResultType("notFound");
-      // setResultType("google");
-    } catch (error) {
-      console.error("메일 발송 실패:", error);
-    } finally {
-      setIsLoading(false);
+    clearErrors("email");
+    const result = await handleResetPasswordRequest(data.email);
+
+    switch (result) {
+      case "success":
+        setResultType("success");
+        start();
+        break;
+      case "invalidEmail":
+        setError("email", {
+          type: "server",
+          message: "이메일 형식이 올바르지 않습니다.",
+        });
+        break;
+      case "sendFailed":
+        setError("email", {
+          type: "server",
+          message: "이메일이 전송되지 않았습니다. 잠시 후 다시 시도해 주세요.",
+        });
+        break;
+      case "notFound":
+        setResultType("notFound");
+        break;
+      case "google":
+        setResultType("google");
+        break;
+      case "tooManyRequests":
+        start();
+        break;
+
+      default:
+        setError("email", {
+          type: "server",
+          message: "잠시 후 다시 시도해 주세요.",
+        });
     }
   };
 
