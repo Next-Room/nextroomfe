@@ -57,11 +57,21 @@ apiClient.interceptors.response.use(
     const originalRequest = error.config;
     const skipInterceptor = originalRequest?.headers["X-Skip-Auth-Interceptor"];
 
+    const requestUrl = originalRequest?.url ?? "";
+    const passwordResetUrls = [
+      "/v1/auth/password/reset",
+      "/v1/auth/password/reset/validation",
+    ];
+    // 비밀번호 재설정 API의 401만 예외 처리
+    if (response?.status === 401 && passwordResetUrls.includes(requestUrl)) {
+      return Promise.reject(error);
+    }
+    // 기존 인터셉터 동작 유지
     if (skipInterceptor) {
       removeLocalStorageAll();
       window.alert("오류가 발생했습니다. 다시 시도해주세요.");
       window.location.href = "/login";
-      return;
+      return Promise.reject(error);
     }
 
     if (
