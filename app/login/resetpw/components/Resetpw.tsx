@@ -1,5 +1,7 @@
 import { useRouter } from "next/navigation";
 
+import Loader from "@/(shared)/components/Loader/Loader";
+
 import { NEXT } from "../../../signup/consts/signUp";
 import { SignUpTextField } from "../../../signup/components/SignUpTextField";
 import useResetpw from "../hooks/useResetpw";
@@ -11,11 +13,16 @@ const ResetpwComponent = () => {
     passwordProps,
     passwordConfirmProps,
     isValid,
-    token,
     isLoading,
+    isCheckingToken,
     isExpired,
+    isValidationError,
+    retryValidation,
   } = useResetpw();
 
+  if (isCheckingToken) {
+    return <Loader />;
+  }
   if (isExpired) {
     return (
       <div className="signup-cont">
@@ -33,6 +40,27 @@ const ResetpwComponent = () => {
           onClick={() => router.replace("/login")}
         >
           로그인으로 이동
+        </button>
+      </div>
+    );
+  }
+  if (isValidationError) {
+    return (
+      <div className="signup-cont">
+        <p className="signup-title">링크 확인 실패</p>
+
+        <p className="signup-sub-title">
+          비밀번호 재설정 링크를 확인하는 중 오류가 발생했습니다.
+          <br />
+          잠시 후 다시 시도해 주세요.
+        </p>
+
+        <button
+          className="signup-btn"
+          type="button"
+          onClick={() => void retryValidation()}
+        >
+          다시 시도하기
         </button>
       </div>
     );
@@ -57,7 +85,7 @@ const ResetpwComponent = () => {
         <button
           className="signup-btn"
           type="submit"
-          disabled={!isValid || isLoading}
+          disabled={!isValid || isLoading || isCheckingToken}
         >
           {NEXT}
         </button>

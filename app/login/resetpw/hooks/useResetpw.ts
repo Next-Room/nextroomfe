@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import useAnalytics from "@/(shared)/hooks/useAnalytics";
 
+import useResetPasswordValidation from "../../apis/postResetPwValidation";
+import useResetPassword from "../../apis/postResetPw";
 import {
   SIGN_UP_PASSWORD,
   SIGN_UP_PASSWORD_CONFIRM,
@@ -17,23 +19,29 @@ import {
 const useResetpw = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const token = searchParams.get("token");
-  const [isExpired, setIsExpired] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const expiredRef = useRef(false);
-  const expiredToken = () => {
-    if (expiredRef.current) return;
+  const { logEvent } = useAnalytics();
 
-    expiredRef.current = true;
-    setIsExpired(true);
-  };
+  const {
+    data: validationResult,
+    isLoading: isValidationLoading,
+    refetch: retryValidation,
+  } = useResetPasswordValidation(token);
+  const { handleResetPassword, isLoading } = useResetPassword();
+
+  const [isResetTokenExpired, setIsResetTokenExpired] = useState(false);
+
+  const isCheckingToken = !!token && isValidationLoading;
+  const isExpired =
+    !token || validationResult === "expired" || isResetTokenExpired;
+  const isValidationError = validationResult === "error";
 
   const {
     register,
     setFocus,
     handleSubmit,
+    setError,
     watch,
     formState: { errors, isValid },
   } = useForm<PasswordValueType>({
@@ -45,7 +53,6 @@ const useResetpw = () => {
   });
   const formValue = watch();
 
-  const { logEvent } = useAnalytics();
   useEffect(() => {
     logEvent("screen_view", {
       firebase_screen: "reset_pw",
@@ -66,28 +73,46 @@ const useResetpw = () => {
   };
 
   const onSubmit: SubmitHandler<PasswordValueType> = async (data) => {
-    if (isLoading || isExpired) return;
+    if (
+      isLoading ||
+      isCheckingToken ||
+      isExpired ||
+      isValidationError ||
+      validationResult !== "valid" ||
+      !token
+    )
+      return;
 
-    setIsLoading(true);
+    const result = await handleResetPassword({
+      token,
+      password: data.password,
+    });
+    switch (result) {
+      case "success":
+        logEvent("btn_click", {
+          btn_name: "reset_pw_btn",
+          btn_position: "top",
+        });
+        router.replace("/login/resetpw/success");
+        break;
 
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      console.error("Mock 비밀번호 재설정:", data.password);
+      case "expired":
+        setIsResetTokenExpired(true);
+        break;
 
-      logEvent("btn_click", {
-        btn_name: "reset_pw_btn",
-        btn_position: "top",
-      });
-      router.replace("/login/resetpw/success");
-    } catch (error) {
-      // 토큰만료 API 응답 받았을때
-      // if (error.response?.status === 410 || error.response?.data?.code==="TOKEN_EXPIRED") {
-      //   setIsExpired(true);
-      //   return
-      // }
-      console.error("비밀번호 재설정 실패:", error);
-    } finally {
-      setIsLoading(false);
+      case "invalidPassword":
+        setError("password", {
+          type: "server",
+          message: "비밀번호 조건이 맞지 않습니다.",
+        });
+        break;
+
+      default:
+        setError("password", {
+          type: "server",
+          message: "비밀번호 변경에 실패했습니다. 잠시 후 다시 시도해 주세요.",
+        });
+        break;
     }
   };
 
@@ -139,13 +164,15 @@ const useResetpw = () => {
   };
 
   return {
-    token,
     formProps,
     passwordProps,
     passwordConfirmProps,
     isValid,
     isLoading,
+    isCheckingToken,
     isExpired,
+    isValidationError,
+    retryValidation,
   };
 };
 
