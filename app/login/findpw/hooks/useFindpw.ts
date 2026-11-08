@@ -5,9 +5,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import useCheckSignIn from "@/(shared)/auth/hooks/useCheckSignIn";
 import useAnalytics from "@/(shared)/hooks/useAnalytics";
-import { FindpwResultType } from "@/login/types/LogIn";
 import useResetPasswordRequest from "@/login/apis/postResetPwRequest";
 
+import { FindpwResultType } from "../types/Findpw";
 import {
   SignUpValueType,
   TextFieldPropsType,
@@ -56,7 +56,11 @@ const useFindpw = () => {
   }, [logEvent]);
 
   const onSubmit: SubmitHandler<SignUpValueType> = async (data) => {
-    if (isLoading || (resultType === "success" && isRunning)) return;
+    if (
+      isLoading ||
+      ((resultType === "success" || resultType === "rateLimited") && isRunning)
+    )
+      return;
 
     clearErrors("email");
     const result = await handleResetPasswordRequest(data.email);
@@ -85,6 +89,7 @@ const useFindpw = () => {
         setResultType("google");
         break;
       case "tooManyRequests":
+        setResultType("rateLimited");
         start();
         break;
 
@@ -125,7 +130,10 @@ const useFindpw = () => {
   const resendProps = {
     type: "button" as const,
     onClick: handleSubmit(onSubmit),
-    disabled: resultType !== "success" || isRunning || isLoading,
+    disabled:
+      (resultType !== "success" && resultType !== "rateLimited") ||
+      isRunning ||
+      isLoading,
   };
 
   return {
