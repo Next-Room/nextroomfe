@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 import useCheckSignIn from "@/(shared)/auth/hooks/useCheckSignIn";
+import { useIsLoggedInValue } from "@/(shared)/atoms/account.atom";
 import useChannelTalk from "@/(shared)/hooks/useChannelTalk";
 import { EMAIL, PASSWORD } from "@/login/consts/logIn";
 import { setCookie } from "@/(shared)/auth/helpers/cookie";
@@ -36,6 +37,7 @@ const useLogIn = () => {
 
   const { data: themeList, isLoading: isThemeLoading } = useGetThemeList();
   const router = useRouter();
+  const isLoggedIn = useIsLoggedInValue();
 
   const onSubmit: SubmitHandler<LogInValueType> = async (data) => {
     try {
@@ -46,6 +48,8 @@ const useLogIn = () => {
   };
 
   useEffect(() => {
+    if (!isLoggedIn || isThemeLoading) return;
+
     if (themeList && themeList.length > 0) {
       const defaultThemeId = themeList[0].id;
       router.push(`/admin?themeId=${defaultThemeId}`);
@@ -53,7 +57,7 @@ const useLogIn = () => {
       router.push(`/admin`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [themeList, isThemeLoading]);
+  }, [isLoggedIn, themeList, isThemeLoading]);
 
   const formProps = {
     component: "form",
