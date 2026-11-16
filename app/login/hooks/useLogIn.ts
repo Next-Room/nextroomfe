@@ -1,8 +1,9 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import useCheckSignIn from "@/(shared)/auth/hooks/useCheckSignIn";
+import { getRedirectPath } from "@/(shared)/auth/helpers/redirect";
 import { useIsLoggedInValue } from "@/(shared)/atoms/account.atom";
 import useChannelTalk from "@/(shared)/hooks/useChannelTalk";
 import { EMAIL, PASSWORD } from "@/login/consts/logIn";
@@ -38,6 +39,8 @@ const useLogIn = () => {
   const { data: themeList, isLoading: isThemeLoading } = useGetThemeList();
   const router = useRouter();
   const isLoggedIn = useIsLoggedInValue();
+  // 로그인 후 이동할 경로를 마운트 시점의 redirect 쿼리에서 읽어 둔다.
+  const [redirectPath] = useState(getRedirectPath);
 
   const onSubmit: SubmitHandler<LogInValueType> = async (data) => {
     try {
@@ -50,7 +53,9 @@ const useLogIn = () => {
   useEffect(() => {
     if (!isLoggedIn || isThemeLoading) return;
 
-    if (themeList && themeList.length > 0) {
+    if (redirectPath) {
+      router.push(redirectPath);
+    } else if (themeList && themeList.length > 0) {
       const defaultThemeId = themeList[0].id;
       router.push(`/admin?themeId=${defaultThemeId}`);
     } else {

@@ -8,6 +8,8 @@ import { getLoginInfo } from "@/(shared)/auth/storageUtil";
 
 import Mobile from "../../components/Mobile/Mobile";
 
+import { getLoginPathWithRedirect, LOGIN_PATH } from "./redirect";
+
 interface RequireAuthProps {
   children: ReactNode;
 }
@@ -47,7 +49,11 @@ function RequireAuth({ children }: RequireAuthProps) {
         setIsLoggedIn(true);
         return;
       }
-      router.push("/login");
+      // 로그인 페이지에서는 redirect 쿼리를 유지하기 위해 이동하지 않는다.
+      if (pathname === LOGIN_PATH) return;
+      router.push(
+        getLoginPathWithRedirect(`${pathname}${window.location.search}`)
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn, pathname]);

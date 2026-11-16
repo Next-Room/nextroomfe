@@ -10,6 +10,7 @@ import {
   removeLocalStorageAll,
   setLoginInfo,
 } from "@/(shared)/auth/storageUtil";
+import { getLoginPathWithRedirect } from "@/(shared)/auth/helpers/redirect";
 
 // Axios 클라이언트 설정
 export const apiClient = axios.create({
@@ -123,7 +124,9 @@ apiClient.interceptors.response.use(
             if (currentPath !== "/signup") {
               processQueue(refreshError, null);
               removeLocalStorageAll();
-              window.location.href = "/login";
+              window.location.href = getLoginPathWithRedirect(
+                `${currentPath}${window.location.search}`
+              );
             }
             throw refreshError;
           }
