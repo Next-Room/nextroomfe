@@ -3,7 +3,7 @@
 import "../../signup/styles/signup.modules.sass";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function RootLayout({
   children,
@@ -20,6 +20,9 @@ export default function RootLayout({
     }
   }, []);
   const router = useRouter();
+  const pathname = usePathname();
+  const isResetPw =
+    pathname === "/login/resetpw" || pathname === "/login/resetpw/success";
 
   const ImageProps = {
     src: "/images/svg/icon_X.svg",
@@ -39,14 +42,16 @@ export default function RootLayout({
   return (
     <>
       <div className="signup-wrapper">
-        <button
-          className="signup-header"
-          onClick={() => {
-            router.back();
-          }}
-        >
-          <Image {...ImageProps} />
-        </button>
+        {!isResetPw && (
+          <button
+            className="signup-header"
+            onClick={() => {
+              router.back();
+            }}
+          >
+            <Image {...ImageProps} />
+          </button>
+        )}
       </div>
       {children}
     </>
