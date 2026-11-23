@@ -147,8 +147,15 @@ export const qnas = [
   {
     idx: 3,
     question: "비밀번호를 잊어버렸어요.",
-    answer: `현재 넥스트룸은 비밀번호 찾기/변경 기능을 제공하지 않습니다.
-만약 비밀번호를 잊으셨다면 공식계정(nextroom.official@gmail.com)으로 연락 주세요.`,
+    answer: `비밀번호를 잊으셨다면 아래 링크를 통해 비밀번호를 재설정해 주세요.
+<a href="https://dev.nextroom.co.kr/login/findpw"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="faq-reset-link">
+■ 비밀번호 재설정하기
+</a>
+
+재설정이 어려우신 경우 공식계정(nextroom.official@gmail.com)으로 연락 주세요.`,
   },
   {
     idx: 4,

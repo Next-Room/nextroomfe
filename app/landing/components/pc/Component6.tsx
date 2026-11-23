@@ -59,6 +59,11 @@ const Component6 = forwardRef<HTMLDivElement>((_, divref) => {
               </div>
               <div
                 className="faq-answer"
+                onClick={(e) => {
+                  if ((e.target as HTMLElement).closest("a")) {
+                    e.stopPropagation();
+                  }
+                }}
                 dangerouslySetInnerHTML={{ __html: qna.answer }}
               />
             </div>
