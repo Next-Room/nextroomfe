@@ -47,7 +47,7 @@ type Response = ApiResponse<LiveGames>;
 
 const URL_PATH = `/v1/live-game`;
 export const QUERY_KEY = [URL_PATH];
-const POLLING_INTERVAL = 60 * 1000;
+export const POLLING_INTERVAL = 60 * 1000;
 
 export const getLiveGames = async (config?: AxiosRequestConfig) => {
   const res = await apiClient.get<Request, AxiosResponse<Response>>(URL_PATH, {

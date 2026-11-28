@@ -5,6 +5,7 @@ import { subscribeLinkURL } from "@/admin/(consts)/sidebar";
 import {
   isSubscriptionError,
   LiveGame,
+  POLLING_INTERVAL,
   UsedHint,
   useGetLiveGames,
 } from "../apis/getLiveGames";
@@ -15,7 +16,15 @@ import HintDetailDialog from "./HintDetailDialog";
 import LiveGameCard from "./LiveGameCard";
 
 export default function LiveGameBoard() {
-  const { data, error, isLoading, isFetching, refetch } = useGetLiveGames();
+  const {
+    data,
+    error,
+    isLoading,
+    isFetching,
+    refetch,
+    dataUpdatedAt,
+    errorUpdatedAt,
+  } = useGetLiveGames();
   const now = useNow(data?.clockOffset ?? 0);
   // 1분마다 목록이 갱신되어도 열어 둔 힌트가 유지되도록 게임 객체가 아닌 필요한 값만 기억한다.
   const [selectedHint, setSelectedHint] = useState<{
@@ -72,10 +81,18 @@ export default function LiveGameBoard() {
             지금 진행 중인 게임이 없어요
           </p>
           <p className="live-games__message-text">
-            앱에서 게임을 시작하면 여기에 실시간으로 표시돼요.
+            앱에서 게임을 시작하면 최대 2분 안에 여기에 표시돼요
             <br />
-            게임 중인데 보이지 않는다면 앱을 최신 버전으로 업데이트해 주세요.
+            시간이 지나도 보이지 않는다면 앱을 최신 버전으로 업데이트해 주세요
           </p>
+          <button
+            type="button"
+            className="live-games__message-button button32"
+            onClick={() => refetch()}
+            disabled={isFetching}
+          >
+            {isFetching ? "불러오는 중" : "지금 새로고침"}
+          </button>
         </div>
       );
     }
@@ -98,6 +115,20 @@ export default function LiveGameBoard() {
   );
   const countOf = (...targets: string[]) =>
     statuses.filter((status) => targets.includes(status)).length;
+
+  const lastFetchedAt = Math.max(dataUpdatedAt, errorUpdatedAt);
+  const secondsUntilRefetch = Math.min(
+    POLLING_INTERVAL / 1000,
+    Math.ceil(
+      (lastFetchedAt + POLLING_INTERVAL - (now - (data?.clockOffset ?? 0))) /
+        1000
+    )
+  );
+  const renderRefreshStatus = () => {
+    if (isFetching) return "불러오는 중";
+    if (secondsUntilRefetch <= 0) return "곧 자동 갱신";
+    return `${secondsUntilRefetch}초 후 자동 갱신`;
+  };
 
   return (
     <div className="live-games">
@@ -127,6 +158,11 @@ export default function LiveGameBoard() {
                 연결 끊김 <strong>{countOf("disconnected")}</strong>
               </li>
             </ul>
+          )}
+          {!isSubscriptionError(error) && lastFetchedAt > 0 && (
+            <span className="live-games__refresh-status">
+              {renderRefreshStatus()}
+            </span>
           )}
           {!isSubscriptionError(error) && (
             <button

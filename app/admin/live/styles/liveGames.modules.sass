@@ -29,6 +29,8 @@ $hint-gap: 4px
       background-color: #4c4d4f
 
 .live-games
+  display: flex
+  flex-direction: column
   width: 100%
   padding-bottom: 40px
 
@@ -75,6 +77,12 @@ $hint-gap: 4px
     &.is-fetching svg
       animation: live-games-refresh-spin 0.8s linear infinite
 
+  &__refresh-status
+    @include body12R
+    color: $color-white50
+    white-space: nowrap
+    font-variant-numeric: tabular-nums
+
   &__summary
     display: flex
     gap: 8px
@@ -110,12 +118,13 @@ $hint-gap: 4px
     gap: 12px
 
   &__message
+    flex: 1
     display: flex
     flex-direction: column
     align-items: center
     justify-content: center
     gap: 8px
-    padding: 120px 0
+    padding: 40px 0
     text-align: center
 
     &-title
@@ -126,9 +135,13 @@ $hint-gap: 4px
       @include body14R
       color: $color-white50
 
-    &-button
-      margin-top: 16px
+    & &-button
+      margin: 16px 0 0
       width: 160px
+
+      &:disabled
+        color: $color-white50
+        cursor: default
 
 @keyframes live-games-refresh-spin
   to
