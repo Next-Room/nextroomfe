@@ -1,0 +1,470 @@
+@import '@/(shared)/styles/variables'
+@import '@/(shared)/styles/mixins'
+@import '@/(shared)/styles/button'
+
+$color-amber: #f5a524
+$hint-height: 24px
+$hint-gap: 4px
+
+// 다크 배경에 맞춘 스크롤바.
+// Safari 는 scrollbar-width 만 지원하고 scrollbar-color 는 지원하지 않아, 표준 속성을 쓰면
+// ::-webkit-scrollbar 가 무시되고 기본(흰색) 트랙이 그려진다. 그래서 scrollbar-color 를 지원하는
+// 브라우저(Chrome·Firefox)에서만 표준 속성을 쓰고, 나머지는 ::-webkit-scrollbar 로 그린다.
+// 트랙을 transparent 로 두면 일부 환경에서 기본(흰색) 트랙이 비쳐 보이므로, 카드 배경색과 같은
+// 불투명 색으로 칠하고 color-scheme 도 dark 로 지정해 기본 스크롤바가 밝게 그려지지 않게 한다.
+@mixin dark-scrollbar
+  color-scheme: dark
+  @supports (scrollbar-color: auto)
+    scrollbar-width: thin
+    scrollbar-color: $color-sub2 $color-sub1
+  &::-webkit-scrollbar
+    width: 6px
+    height: 6px
+  &::-webkit-scrollbar-track
+    background-color: $color-sub1
+  &::-webkit-scrollbar-thumb
+    border-radius: 3px
+    background-color: $color-sub2
+    &:hover
+      background-color: #4c4d4f
+
+.live-games
+  width: 100%
+  padding-bottom: 40px
+
+  &__header
+    display: flex
+    align-items: flex-end
+    justify-content: space-between
+    gap: 24px
+    padding: 30px 0 24px
+    margin-bottom: 24px
+    border-bottom: 1px solid $color-white5
+
+  &__title
+    @include title24SB
+    color: $color-white
+
+  &__desc
+    @include body14M
+    color: $color-white50
+    margin-top: 12px
+
+  &__actions
+    display: flex
+    align-items: center
+    gap: 8px
+
+  &__refresh
+    display: flex
+    align-items: center
+    gap: 6px
+    @include body14M
+    color: $color-white70
+    padding: 6px 12px
+    border-radius: 20px
+    border: 1px solid $color-white12
+    background-color: $color-sub1
+    white-space: nowrap
+    cursor: pointer
+    &:hover:not(:disabled)
+      color: $color-white
+      background-color: $color-white8
+    &:disabled
+      cursor: default
+    &.is-fetching svg
+      animation: live-games-refresh-spin 0.8s linear infinite
+
+  &__summary
+    display: flex
+    gap: 8px
+    list-style: none
+    margin: 0
+    padding: 0
+
+    li
+      @include body14M
+      color: $color-white70
+      padding: 6px 12px
+      border-radius: 20px
+      border: 1px solid $color-white12
+      background-color: $color-sub1
+      white-space: nowrap
+
+    strong
+      color: $color-white
+      margin-left: 4px
+
+    .is-urgent strong
+      color: $color-amber
+
+    .is-time-over strong
+      color: $color-red300
+
+    .is-disconnected strong
+      color: $color-white50
+
+  &__grid
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(248px, 1fr))
+    gap: 12px
+
+  &__message
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    gap: 8px
+    padding: 120px 0
+    text-align: center
+
+    &-title
+      @include title18SB
+      color: $color-white
+
+    &-text
+      @include body14R
+      color: $color-white50
+
+    &-button
+      margin-top: 16px
+      width: 160px
+
+@keyframes live-games-refresh-spin
+  to
+    transform: rotate(360deg)
+
+.live-game-card
+  display: flex
+  flex-direction: column
+  gap: 10px
+  padding: 14px 16px
+  border-radius: 12px
+  border: 1px solid $color-white12
+  background-color: $color-sub1
+  transition: border-color 0.2s ease, opacity 0.2s ease
+
+  &__header
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 8px
+
+  &__title
+    @include body16M
+    font-weight: $font-weight-semi-bold
+    color: $color-white
+    min-width: 0
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+
+  &__badge
+    flex-shrink: 0
+    display: flex
+    align-items: center
+    gap: 6px
+    padding: 3px 9px
+    border-radius: 20px
+    background-color: $color-white5
+    color: $color-white70
+    @include caption12M
+
+  &__badge-dot
+    width: 6px
+    height: 6px
+    border-radius: 50%
+    background-color: $color-white70
+
+  &__timer
+    display: flex
+    flex-direction: column
+    gap: 8px
+
+  &__timer-row
+    display: flex
+    align-items: baseline
+    justify-content: space-between
+    gap: 8px
+
+  &__timer-value
+    font-size: 30px
+    font-weight: $font-weight-semi-bold
+    line-height: 1
+    color: $color-white
+    font-variant-numeric: tabular-nums
+    letter-spacing: -0.3px
+
+  &__hint-count
+    flex-shrink: 0
+    @include body14M
+    color: $color-white50
+    font-variant-numeric: tabular-nums
+
+    strong
+      @include body16M
+      font-weight: $font-weight-semi-bold
+      color: $color-white70
+
+  &__caption-row
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 8px
+
+  &__timer-caption
+    @include body12R
+    color: $color-white50
+
+  &__battery
+    flex-shrink: 0
+    display: flex
+    align-items: center
+    gap: 4px
+    @include body12M
+    color: $color-white50
+    font-variant-numeric: tabular-nums
+
+    &.is-low
+      color: $color-red300
+
+  &__battery-icon
+    position: relative
+    display: flex
+    width: 20px
+    height: 10px
+    padding: 1px
+    margin-right: 2px
+    border-radius: 3px
+    border: 1px solid currentColor
+    // 배터리 단자
+    &::after
+      content: ''
+      position: absolute
+      top: 50%
+      right: -3px
+      width: 2px
+      height: 4px
+      border-radius: 0 1px 1px 0
+      background-color: currentColor
+      transform: translateY(-50%)
+
+  &__battery-level
+    height: 100%
+    border-radius: 1px
+    background-color: currentColor
+
+  &__progress
+    height: 4px
+    border-radius: 2px
+    background-color: $color-white8
+    overflow: hidden
+
+  &__progress-bar
+    height: 100%
+    background-color: $color-white70
+    transition: width 1s linear
+
+  &__hint-list
+    display: flex
+    flex-wrap: wrap
+    gap: $hint-gap
+    list-style: none
+    margin: 0
+    padding: 0
+    // 최신 힌트부터 2줄까지만 보이고 나머지는 목록 안에서 스크롤한다.
+    max-height: $hint-height * 2 + $hint-gap
+    overflow-y: auto
+    overscroll-behavior: contain
+    @include dark-scrollbar
+
+  &__hint
+    display: flex
+    align-items: center
+    gap: 4px
+    height: $hint-height
+    padding: 0 8px
+    border-radius: 6px
+    background-color: $color-white5
+    white-space: nowrap
+    cursor: pointer
+    @include body12M
+    &:hover
+      background-color: $color-white12
+    &:focus-visible
+      outline: 1px solid $color-white50
+    // 정답까지 확인한 힌트는 관리자에게 중요도가 낮아 테두리로만 구분한다.
+    &.is-answer-opened
+      box-shadow: inset 0 0 0 1px $color-white20
+
+  &__hint-code
+    color: $color-white70
+    font-weight: $font-weight-semi-bold
+    font-variant-numeric: tabular-nums
+    letter-spacing: 0.5px
+
+  &__hint-progress
+    color: $color-white50
+    font-variant-numeric: tabular-nums
+
+  &__hint-empty
+    @include body12R
+    line-height: $hint-height
+    color: $color-white50
+
+  &__notice
+    @include body12R
+    color: $color-white70
+    padding: 8px 10px
+    border-radius: 8px
+    border: 1px dashed $color-white20
+
+  &.is-playing
+    .live-game-card__badge-dot
+      background-color: #d5e3d5e0
+
+  &.is-urgent
+    border-color: rgba($color-amber, 0.5)
+
+    .live-game-card__badge
+      color: $color-amber
+      background-color: rgba($color-amber, 0.12)
+
+    .live-game-card__badge-dot,
+    .live-game-card__progress-bar
+      background-color: $color-amber
+
+    .live-game-card__timer-value
+      color: $color-amber
+
+  &.is-timeOver
+    border-color: rgba($color-red300, 0.6)
+
+    .live-game-card__badge
+      color: $color-red300
+      background-color: rgba($color-red300, 0.12)
+
+    .live-game-card__badge-dot,
+    .live-game-card__progress-bar
+      background-color: $color-red300
+
+    .live-game-card__timer-value
+      color: $color-red300
+
+  &.is-disconnected
+    border-style: dashed
+
+    .live-game-card__badge-dot
+      background-color: $color-white20
+
+    .live-game-card__timer,
+    .live-game-card__hint-list,
+    .live-game-card__hint-empty
+      opacity: 0.4
+
+.hint-detail
+  display: flex
+  flex-direction: column
+  width: 520px
+  max-height: 80vh
+  border-radius: 16px
+  border: 1px solid $color-white12
+  background-color: $color-sub1
+  overflow: hidden
+
+  &__backdrop
+    position: fixed
+    inset: 0
+    z-index: 700
+    display: flex
+    align-items: center
+    justify-content: center
+    background-color: $color-black60
+
+  &__header
+    display: flex
+    align-items: flex-start
+    justify-content: space-between
+    gap: 16px
+    padding: 24px 24px 20px
+    border-bottom: 1px solid $color-white8
+
+  &__heading
+    display: flex
+    flex-direction: column
+    gap: 6px
+    min-width: 0
+
+  &__theme
+    @include body12M
+    color: $color-white50
+
+  &__title
+    @include title20SB
+    color: $color-white
+    font-variant-numeric: tabular-nums
+
+  &__meta
+    @include body14R
+    color: $color-white50
+
+  &__close
+    flex-shrink: 0
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 32px
+    height: 32px
+    border-radius: 8px
+    cursor: pointer
+    &:hover
+      background-color: $color-white8
+
+  &__body
+    display: flex
+    flex-direction: column
+    gap: 24px
+    padding: 24px
+    overflow-y: auto
+
+  &__section
+    display: flex
+    flex-direction: column
+    gap: 10px
+
+  &__section-title
+    display: flex
+    align-items: center
+    gap: 8px
+    @include body14M
+    color: $color-white50
+
+  &__answer-badge
+    margin-left: 8px
+    color: $color-white50
+    @include body12R
+
+  &__text
+    @include body16R
+    color: $color-white
+    white-space: pre-wrap
+    word-break: keep-all
+    overflow-wrap: anywhere
+
+  &__images
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr))
+    gap: 8px
+
+    img
+      width: 100%
+      aspect-ratio: 1
+      object-fit: cover
+      border-radius: 8px
+      border: 1px solid $color-white8
+
+  &__message
+    @include body14R
+    color: $color-white50
+    text-align: center
+    padding: 24px 0
