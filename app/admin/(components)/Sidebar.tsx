@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import classNames from "classnames";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 
 import {
@@ -30,6 +30,8 @@ interface Theme {
   hintLimit: number;
 }
 
+const LIVE_GAMES_PATH = "/admin/live";
+
 interface Props {
   categories: Theme[];
   selectedTheme: Theme;
@@ -38,6 +40,8 @@ interface Props {
 
 export default function Sidebar(props: Props) {
   const router = useRouter();
+  const pathname = usePathname();
+  const isLiveGamesPage = pathname === LIVE_GAMES_PATH;
   const resetSelectedTheme = useSelectedThemeReset();
   const queryClient = useQueryClient();
 
@@ -67,12 +71,14 @@ export default function Sidebar(props: Props) {
     window.location.href = "/login";
   };
   useEffect(() => {
+    // 모니터링 화면에서는 테마를 직접 고를 때만 테마 화면으로 이동한다.
+    if (isLiveGamesPage) return;
     if (selectedThemeId && selectedThemeId !== "0")
       router.push(
         `/admin?themeId=${encodeURIComponent(selectedThemeId)}
       `
       );
-  }, [selectedThemeId, params]);
+  }, [selectedThemeId, params, isLiveGamesPage]);
 
   const navigateToNewTheme = () => {
     resetSelectedTheme();
@@ -92,6 +98,21 @@ export default function Sidebar(props: Props) {
       setDrawer({ ...drawer, isOpen: false });
       await queryClient.invalidateQueries(QUERY_KEY);
       handleClickSelected(theme);
+    }
+  };
+
+  const handleClickLiveGames = () => {
+    if (drawer.isOpen && !drawer.isSameHint) {
+      open(HintDialog, {
+        type: "put",
+        fn: () => {
+          setDrawer({ ...drawer, isOpen: false });
+          router.push(LIVE_GAMES_PATH);
+        },
+      });
+    } else {
+      setDrawer({ ...drawer, isOpen: false });
+      router.push(LIVE_GAMES_PATH);
     }
   };
 
@@ -139,6 +160,16 @@ export default function Sidebar(props: Props) {
             </span>
           </div>
         </div>
+        <button
+          type="button"
+          className={classNames("sidebar__theme-button sidebar__live-games", {
+            selected: isLiveGamesPage,
+          })}
+          onClick={handleClickLiveGames}
+        >
+          모니터링
+          <span className="beta-badge">BETA</span>
+        </button>
         <div className="sidebar__theme-title">우리 지점 테마</div>
       </div>
       <div className="sidebar__scroll">
@@ -152,7 +183,8 @@ export default function Sidebar(props: Props) {
               <button
                 type="button"
                 className={classNames("sidebar__theme-button", {
-                  selected: selectedThemeId === theme.id.toString(),
+                  selected:
+                    !isLiveGamesPage && selectedThemeId === theme.id.toString(),
                 })}
                 onClick={() => handleSelectTheme(theme)}
               >
@@ -166,7 +198,7 @@ export default function Sidebar(props: Props) {
               className={classNames(
                 "sidebar__theme-button sidebar__add-theme",
                 {
-                  selected: !params,
+                  selected: !isLiveGamesPage && !params,
                 }
               )}
               onClick={handleCreateTheme}
